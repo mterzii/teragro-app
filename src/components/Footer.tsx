@@ -124,7 +124,7 @@ export default function Footer() {
             {/* Social */}
             <div className="flex gap-4 mt-4">
               <a
-                href="https://www.linkedin.com/"
+                href="https://www.linkedin.com/in/mehmet-terzi-817163166/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 bg-gray-800 rounded-lg hover:bg-[#0077B5] hover:text-white transition-all duration-300"
