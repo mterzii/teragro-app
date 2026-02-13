@@ -3,69 +3,47 @@ import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import PartnersScroll from '../components/PartnersScroll';
 
+type Partner = {
+  company: string;
+  image: string;
+  fallback?: string;
+};
+
 export default function Referanslar() {
   const ctaRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ctaRef });
   const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
 
-  const references = [
-    {
-      company: 'Toros Tarım',
-      image: 'http://www.zekiziraat.com/images/common/toros-gubre-logo.jpg',
-    },
-    {
-      company: 'Gübretaş',
-      image: 'http://www.zekiziraat.com/images/common/gubretas-logo.jpg',
-    },
-    {
-      company: 'İGSAŞ',
-      image: 'http://www.zekiziraat.com/images/common/igsas-gubre-logo.jpg',
-    },
-    {
-      company: 'GENTA Tarım',
-      image: 'https://scontent.fada2-3.fna.fbcdn.net/v/t39.30808-6/306282726_522497879878871_266201470434589828_n.png',
-    },
-    {
-      company: 'Doktor Tarsa (DRT)',
-      image: 'http://www.zekiziraat.com/images/common/doktor-tarsa-logo.jpg',
-    },
-    {
-      company: 'Agrobest',
-      image: 'https://agrobestgrup.com/assets/image/og-image.png',
-    },
-    {
-      company: 'Safa Tarım',
-      image: 'https://ozlemhasere.com/image/cache/catalog/safatarim-600x315w.png',
-    },
+  // public/partners içindeki dosyalar:
+  // agrobestlogo.png, doktorlogo.jpg, gentalogo.png, gubretas.jpg,
+  // igsaslogo.jpg, safalogo.png, toroslogo.jpg
+  const references: Partner[] = [
+    { company: 'Toros Tarım', image: '/partners/toroslogo.jpg', fallback: '/partners/toroslogo.jpg' },
+    { company: 'Gübretaş', image: '/partners/gubretas.jpg', fallback: '/partners/gubretas.jpg' },
+    { company: 'İGSAŞ', image: '/partners/igsaslogo.jpg', fallback: '/partners/igsaslogo.jpg' },
+    { company: 'GENTA Tarım', image: '/partners/gentalogo.png', fallback: '/partners/gentalogo.png' },
+    { company: 'Doktor Tarsa (DRT)', image: '/partners/doktorlogo.jpg', fallback: '/partners/doktorlogo.jpg' },
+    { company: 'Agrobest', image: '/partners/agrobestlogo.png', fallback: '/partners/agrobestlogo.png' },
+    { company: 'Safa Tarım', image: '/partners/safalogo.png', fallback: '/partners/safalogo.png' },
   ];
+
   return (
     <main className="pt-20">
       <section className="relative h-80 overflow-hidden flex items-center bg-gradient-to-br from-emerald-100 via-teal-100 to-green-100">
         {/* Geometric Shapes */}
         <motion.div
-          animate={{
-            x: [0, 50, 0],
-            y: [0, 30, 0],
-          }}
+          animate={{ x: [0, 50, 0], y: [0, 30, 0] }}
           transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
           className="absolute top-10 right-10 w-80 h-80 bg-gradient-to-br from-emerald-400/40 to-teal-300/40 rounded-full blur-3xl"
         />
         <motion.div
-          animate={{
-            x: [0, -30, 0],
-            y: [0, 50, 0],
-          }}
+          animate={{ x: [0, -30, 0], y: [0, 50, 0] }}
           transition={{ duration: 25, repeat: Infinity, ease: 'easeInOut' }}
           className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-green-300/40 to-emerald-400/30 rounded-full blur-3xl"
         />
 
         <div className="max-w-7xl mx-auto w-full px-4 md:px-8 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-        
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -95,27 +73,21 @@ export default function Referanslar() {
             className="text-center mb-12 md:mb-16"
           >
             <h2 className="section-title">İş Ortaklarımız</h2>
-            <p className="section-subtitle">
-              Birlikte çalıştığımız güvenilir markalar
-            </p>
+            <p className="section-subtitle">Birlikte çalıştığımız güvenilir markalar</p>
           </motion.div>
 
+          {/* PartnersScroll partner.image üzerinden render ediyor.
+              Dış link yok, tamamı local /public/partners. */}
           <PartnersScroll partners={references} />
         </div>
       </section>
 
-
       <section
         ref={ctaRef}
         className="relative py-16 md:py-24 overflow-hidden"
-        style={{
-          backgroundImage: 'linear-gradient(135deg, #1a4d2e 0%, #0f2818 100%)',
-        }}
+        style={{ backgroundImage: 'linear-gradient(135deg, #1a4d2e 0%, #0f2818 100%)' }}
       >
-        <motion.div
-          style={{ y }}
-          className="absolute inset-0 opacity-10"
-        >
+        <motion.div style={{ y }} className="absolute inset-0 opacity-10">
           <div className="absolute w-96 h-96 -top-20 -left-20 bg-white rounded-full blur-3xl" />
           <div className="absolute w-96 h-96 -bottom-20 -right-20 bg-white rounded-full blur-3xl" />
         </motion.div>
