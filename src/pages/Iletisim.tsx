@@ -5,14 +5,12 @@ import {
   MapPin,
   Clock,
   MessageCircle,
-  Facebook,
-  Twitter,
   Linkedin,
   Instagram,
 } from 'lucide-react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 
-export default function İletişim() {
+export default function Iletisim() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -34,8 +32,7 @@ export default function İletişim() {
     setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
   };
 
-  
-  const WHATSAPP_PHONE_E164 = '905349765239'; 
+  const WHATSAPP_PHONE_E164 = '905349765239';
   const WHATSAPP_MESSAGE =
     'Merhaba TERAGRO, web siteniz üzerinden iletişime geçiyorum. Bilgi almak istiyorum.';
   const WHATSAPP_URL = `https://wa.me/${WHATSAPP_PHONE_E164}?text=${encodeURIComponent(
@@ -55,26 +52,17 @@ export default function İletişim() {
       <section className="relative h-96 overflow-hidden flex items-center bg-gradient-to-br from-emerald-50 via-teal-50 to-green-50">
         {/* Animated Background Shapes */}
         <motion.div
-          animate={{
-            scale: [1, 1.2, 1],
-            rotate: [0, 90, 0],
-          }}
+          animate={{ scale: [1, 1.2, 1], rotate: [0, 90, 0] }}
           transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
           className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-emerald-400/20 to-teal-300/20 rounded-full blur-3xl"
         />
         <motion.div
-          animate={{
-            scale: [1, 1.3, 1],
-            rotate: [0, -90, 0],
-          }}
+          animate={{ scale: [1, 1.3, 1], rotate: [0, -90, 0] }}
           transition={{ duration: 25, repeat: Infinity, ease: 'easeInOut' }}
           className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-green-300/20 to-emerald-400/20 rounded-full blur-3xl"
         />
         <motion.div
-          animate={{
-            x: [0, 100, 0],
-            y: [0, -50, 0],
-          }}
+          animate={{ x: [0, 100, 0], y: [0, -50, 0] }}
           transition={{ duration: 15, repeat: Infinity, ease: 'easeInOut' }}
           className="absolute top-1/2 left-1/2 w-64 h-64 bg-gradient-to-br from-teal-400/15 to-emerald-300/15 rounded-full blur-2xl"
         />
@@ -116,9 +104,7 @@ export default function İletişim() {
               className="text-xl md:text-2xl text-gray-600 max-w-2xl mx-auto"
             >
               Tarımsal çözümlerimiz hakkında detaylı bilgi almak için{' '}
-              <span className="font-semibold text-[#1a4d2e]">
-                bize ulaşın
-              </span>
+              <span className="font-semibold text-[#1a4d2e]">bize ulaşın</span>
             </motion.p>
 
             <motion.div
@@ -183,7 +169,8 @@ export default function İletişim() {
                 ? {
                     href: item.link,
                     target: item.icon === MapPin ? '_blank' : undefined,
-                    rel: item.icon === MapPin ? 'noopener noreferrer' : undefined,
+                    rel:
+                      item.icon === MapPin ? 'noopener noreferrer' : undefined,
                   }
                 : {};
 
@@ -248,8 +235,8 @@ export default function İletişim() {
             >
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
                 Bize Ulaşın
-
               </h2>
+
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <input
@@ -346,12 +333,13 @@ export default function İletişim() {
                       icon: Instagram,
                       link: INSTAGRAM_URL,
                       label: 'Instagram',
-                      hoverBg: 'hover:bg-gradient-to-br hover:from-[#833AB4] hover:via-[#E1306C] hover:to-[#FD1D1D]',
+                      hoverBg:
+                        'hover:bg-gradient-to-br hover:from-[#833AB4] hover:via-[#E1306C] hover:to-[#FD1D1D]',
                       color: 'text-gray-700',
                     },
                     {
                       icon: Linkedin,
-                      link: '#',
+                      link: 'https://www.linkedin.com/in/mehmet-terzi-817163166/',
                       label: 'LinkedIn',
                       hoverBg: 'hover:bg-[#0A66C2]',
                       color: 'text-gray-700',
@@ -386,7 +374,6 @@ export default function İletişim() {
                     <MessageCircle size={20} />
                     WhatsApp’tan yaz
                   </a>
-                  
                 </div>
               </div>
             </motion.div>

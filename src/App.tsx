@@ -4,7 +4,7 @@ import Home from './pages/Home';
 import Faaliyetlerimiz from './pages/Faaliyetlerimiz';
 import Hakkimizda from './pages/Hakkimizda';
 import Referanslar from './pages/Referanslar';
-import İletişim from './pages/İletişim';
+import İletişim from './pages/Iletisim';
 import ZiraiIlac from './pages/ZiraiIlac';
 import DamlaSulama from './pages/DamlaSulama';
 import Footer from './components/Footer';
