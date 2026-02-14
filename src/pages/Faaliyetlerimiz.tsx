@@ -191,10 +191,10 @@ export default function Faaliyetlerimiz() {
   const showImages = currentCategory.id !== 'pestisit' && currentCategory.id !== 'gubre';
 
   return (
-    <main className="pt-20">
+    <main className="pt-20 overflow-x-hidden w-full">
       {/* Hero Section */}
       <section
-        className="relative h-96 bg-cover bg-center flex items-center overflow-hidden"
+        className="relative h-80 md:h-96 bg-cover bg-center flex items-center overflow-hidden"
         style={{ backgroundImage: heroBg }}
       >
         {/* Animated Background Pattern for Pestisit & Gubre */}

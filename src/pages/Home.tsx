@@ -8,7 +8,7 @@ import CTA from '../components/CTA';
 
 export default function Home() {
   return (
-    <main className="pt-20">
+    <main className="pt-20 overflow-x-hidden w-full">
       <Hero />
       <Statistics />
       <Services />

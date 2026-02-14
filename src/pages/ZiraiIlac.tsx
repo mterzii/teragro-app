@@ -6,9 +6,9 @@ const MotionLink = motion(Link);
 
 export default function ZiraiIlac() {
   return (
-    <main className="pt-20">
+    <main className="pt-20 overflow-x-hidden w-full">
       {/* Hero Section */}
-      <section className="relative h-[380px] overflow-hidden flex items-center bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50">
+      <section className="relative h-64 md:h-[380px] overflow-hidden flex items-center bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50">
         {/* Geometric Shapes */}
         <motion.div
           animate={{ rotate: [0, 360] }}
@@ -43,7 +43,7 @@ export default function ZiraiIlac() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="text-5xl md:text-6xl font-bold mb-4 text-gray-900"
+              className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 text-gray-900"
             >
               ZİRAİ İLAÇ
             </motion.h1>

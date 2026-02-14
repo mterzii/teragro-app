@@ -47,9 +47,9 @@ export default function Iletisim() {
   const MAPS_DIRECT_URL = 'https://maps.app.goo.gl/Gq5FPKZWugqQYLCe6';
 
   return (
-    <main className="pt-20">
+    <main className="pt-20 overflow-x-hidden w-full">
       {/* Hero */}
-      <section className="relative h-96 overflow-hidden flex items-center bg-gradient-to-br from-emerald-50 via-teal-50 to-green-50">
+      <section className="relative h-80 md:h-96 overflow-hidden flex items-center bg-gradient-to-br from-emerald-50 via-teal-50 to-green-50">
         {/* Animated Background Shapes */}
         <motion.div
           animate={{ scale: [1, 1.2, 1], rotate: [0, 90, 0] }}
@@ -90,7 +90,7 @@ export default function Iletisim() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-4"
+              className="text-3xl md:text-5xl lg:text-7xl font-bold text-gray-900 mb-4"
             >
               <span className="bg-gradient-to-r from-[#1a4d2e] to-teal-600 bg-clip-text text-transparent">
                 İletişim
@@ -101,7 +101,7 @@ export default function Iletisim() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="text-xl md:text-2xl text-gray-600 max-w-2xl mx-auto"
+              className="text-base md:text-xl lg:text-2xl text-gray-600 max-w-2xl mx-auto px-4"
             >
               Tarımsal çözümlerimiz hakkında detaylı bilgi almak için{' '}
               <span className="font-semibold text-[#1a4d2e]">bize ulaşın</span>
@@ -224,8 +224,8 @@ export default function Iletisim() {
 
       {/* Main Contact Section */}
       <section className="section-padding bg-gray-50">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
             {/* Contact Form */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}

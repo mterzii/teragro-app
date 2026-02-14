@@ -3,9 +3,9 @@ import { Droplets, TrendingUp } from 'lucide-react';
 
 export default function DamlaSulama() {
   return (
-    <main className="pt-20">
+    <main className="pt-20 overflow-x-hidden w-full">
       {/* Hero Section */}
-      <section className="relative h-[380px] overflow-hidden flex items-center">
+      <section className="relative h-64 md:h-[380px] overflow-hidden flex items-center">
         {/* Animated Background */}
         <motion.div
           initial={{ scale: 1.2, opacity: 0 }}
@@ -79,7 +79,7 @@ export default function DamlaSulama() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.6 }}
-                className="text-4xl md:text-5xl font-bold mb-3 text-white drop-shadow-lg"
+                className="text-2xl md:text-4xl lg:text-5xl font-bold mb-3 text-white drop-shadow-lg"
               >
                 HASSAS DAMLA SULAMA
               </motion.h1>

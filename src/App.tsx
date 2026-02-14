@@ -12,17 +12,19 @@ import Footer from './components/Footer';
 function App() {
   return (
     <Router>
-      <Navigation />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/zirai-ilac" element={<ZiraiIlac />} />
-        <Route path="/damla-sulama" element={<DamlaSulama />} />
-        <Route path="/faaliyetlerimiz" element={<Faaliyetlerimiz />} />
-        <Route path="/hakkimizda" element={<Hakkimizda />} />
-        <Route path="/referanslar" element={<Referanslar />} />
-        <Route path="/iletisim" element={<İletişim />} />
-      </Routes>
-      <Footer />
+      <div className="overflow-x-hidden w-full">
+        <Navigation />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/zirai-ilac" element={<ZiraiIlac />} />
+          <Route path="/damla-sulama" element={<DamlaSulama />} />
+          <Route path="/faaliyetlerimiz" element={<Faaliyetlerimiz />} />
+          <Route path="/hakkimizda" element={<Hakkimizda />} />
+          <Route path="/referanslar" element={<Referanslar />} />
+          <Route path="/iletisim" element={<İletişim />} />
+        </Routes>
+        <Footer />
+      </div>
     </Router>
   );
 }

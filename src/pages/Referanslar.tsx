@@ -28,8 +28,8 @@ export default function Referanslar() {
   ];
 
   return (
-    <main className="pt-20">
-      <section className="relative h-80 overflow-hidden flex items-center bg-gradient-to-br from-emerald-100 via-teal-100 to-green-100">
+    <main className="pt-20 overflow-x-hidden w-full">
+      <section className="relative h-64 md:h-80 overflow-hidden flex items-center bg-gradient-to-br from-emerald-100 via-teal-100 to-green-100">
         {/* Geometric Shapes */}
         <motion.div
           animate={{ x: [0, 50, 0], y: [0, 30, 0] }}
@@ -48,7 +48,7 @@ export default function Referanslar() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="text-5xl md:text-6xl font-bold text-gray-900"
+              className="text-3xl md:text-5xl lg:text-6xl font-bold text-gray-900"
             >
               Referanslarımız
             </motion.h1>

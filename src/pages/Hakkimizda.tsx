@@ -43,8 +43,8 @@ export default function Hakkimizda() {
   ];
 
   return (
-    <main className="pt-20">
-      <section className="relative h-80 overflow-hidden flex items-center bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50">
+    <main className="pt-20 overflow-x-hidden w-full">
+      <section className="relative h-64 md:h-80 overflow-hidden flex items-center bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50">
         {/* Geometric Shapes */}
         <motion.div
           animate={{
@@ -85,7 +85,7 @@ export default function Hakkimizda() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="text-5xl md:text-6xl font-bold text-gray-900"
+              className="text-3xl md:text-5xl lg:text-6xl font-bold text-gray-900"
             >
               Hakkımızda
             </motion.h1>
