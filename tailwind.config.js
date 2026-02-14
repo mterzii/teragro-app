@@ -18,8 +18,8 @@ export default {
         },
       },
       animation: {
-        marquee: 'marquee 1s linear infinite',
-      }7
+        marquee: 'marquee 7s linear infinite',
+      },
     },
   },
   plugins: [],
