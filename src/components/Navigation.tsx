@@ -30,21 +30,37 @@ export default function Navigation() {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <nav
-      className={`fixed w-full z-50 transition-all duration-500 ${
+    <motion.nav
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ type: "spring", stiffness: 100, damping: 20 }}
+      className={`fixed w-full z-50 transition-all duration-700 ${
         isScrolled
-          ? 'bg-gradient-to-r from-emerald-600 via-green-600 to-teal-600 shadow-2xl shadow-emerald-500/20'
-          : 'bg-gradient-to-r from-emerald-500/95 via-green-500/95 to-teal-500/95 backdrop-blur-md'
+          ? 'bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900 shadow-2xl shadow-blue-500/30 border-b border-blue-500/20'
+          : 'bg-gradient-to-r from-slate-900/95 via-blue-900/95 to-slate-900/95 backdrop-blur-xl border-b border-white/10'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <div className="flex items-center justify-between h-20">
           <Link to="/" className="flex items-center group relative">
-            <div className="absolute inset-0 bg-white/20 rounded-2xl blur-xl group-hover:bg-white/30 transition-all duration-300" />
-            <img
+            <motion.div
+              className="absolute inset-0 bg-blue-500/20 rounded-2xl blur-xl"
+              animate={{
+                scale: [1, 1.2, 1],
+                opacity: [0.3, 0.5, 0.3]
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            />
+            <motion.img
               src={Logo}
               alt="TERAGRO Logo"
-              className="h-14 w-auto relative z-10 drop-shadow-2xl group-hover:scale-110 transition-transform duration-300"
+              className="h-14 w-auto relative z-10 drop-shadow-2xl"
+              whileHover={{ scale: 1.1, rotate: [0, -5, 5, 0] }}
+              transition={{ duration: 0.5 }}
             />
           </Link>
 
@@ -54,15 +70,22 @@ export default function Navigation() {
               to="/"
               className={`relative px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 overflow-hidden group ${
                 isActive('/')
-                  ? 'text-emerald-600 shadow-lg'
+                  ? 'text-slate-900 shadow-lg shadow-blue-500/50'
                   : 'text-white hover:text-white'
               }`}
             >
-              <span className={`absolute inset-0 transition-all duration-300 ${
-                isActive('/')
-                  ? 'bg-white'
-                  : 'bg-white/0 group-hover:bg-white/20'
-              }`} />
+              <motion.span
+                className={`absolute inset-0 ${
+                  isActive('/')
+                    ? 'bg-gradient-to-r from-blue-400 to-cyan-400'
+                    : 'bg-white/0'
+                }`}
+                whileHover={!isActive('/') ? {
+                  backgroundColor: 'rgba(255, 255, 255, 0.15)',
+                  scale: 1.05
+                } : {}}
+                transition={{ duration: 0.2 }}
+              />
               <span className="relative z-10">Anasayfa</span>
             </Link>
 
@@ -70,39 +93,57 @@ export default function Navigation() {
               <button
                 className={`relative px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 overflow-hidden flex items-center gap-2 ${
                   isActive('/zirai-ilac') || isActive('/damla-sulama') || isActive('/faaliyetlerimiz')
-                    ? 'text-emerald-600 shadow-lg'
+                    ? 'text-slate-900 shadow-lg shadow-blue-500/50'
                     : 'text-white hover:text-white'
                 }`}
               >
-                <span className={`absolute inset-0 transition-all duration-300 ${
-                  isActive('/zirai-ilac') || isActive('/damla-sulama') || isActive('/faaliyetlerimiz')
-                    ? 'bg-white'
-                    : 'bg-white/0 group-hover:bg-white/20'
-                }`} />
+                <motion.span
+                  className={`absolute inset-0 ${
+                    isActive('/zirai-ilac') || isActive('/damla-sulama') || isActive('/faaliyetlerimiz')
+                      ? 'bg-gradient-to-r from-blue-400 to-cyan-400'
+                      : 'bg-white/0'
+                  }`}
+                  whileHover={!(isActive('/zirai-ilac') || isActive('/damla-sulama') || isActive('/faaliyetlerimiz')) ? {
+                    backgroundColor: 'rgba(255, 255, 255, 0.15)',
+                    scale: 1.05
+                  } : {}}
+                  transition={{ duration: 0.2 }}
+                />
                 <span className="relative z-10 flex items-center gap-2">
                   Hizmetlerimiz
-                  <ChevronDown size={16} className="group-hover:rotate-180 transition-transform duration-300" />
+                  <motion.div
+                    animate={{ rotate: 0 }}
+                    whileHover={{ rotate: 180 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <ChevronDown size={16} />
+                  </motion.div>
                 </span>
               </button>
               <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                whileHover={{ opacity: 1, y: 0 }}
-                className="absolute left-0 top-full mt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300"
+                initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                whileHover={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.2 }}
+                className="absolute left-0 top-full mt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible"
               >
-                <div className="bg-white rounded-2xl shadow-2xl py-3 w-60 border border-emerald-100">
+                <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl shadow-2xl py-3 w-60 border border-blue-500/30 backdrop-blur-xl">
                   <Link
                     to="/zirai-ilac"
                     className={`relative block px-4 py-3 text-sm font-medium transition-all overflow-hidden group/item ${
                       isActive('/zirai-ilac')
                         ? 'text-white'
-                        : 'text-gray-700'
+                        : 'text-gray-300'
                     }`}
                   >
-                    <span className={`absolute inset-0 transition-all duration-300 ${
-                      isActive('/zirai-ilac')
-                        ? 'bg-gradient-to-r from-emerald-500 to-green-500'
-                        : 'bg-gradient-to-r from-emerald-50 to-green-50 opacity-0 group-hover/item:opacity-100'
-                    }`} />
+                    <motion.span
+                      className={`absolute inset-0 ${
+                        isActive('/zirai-ilac')
+                          ? 'bg-gradient-to-r from-blue-500 to-cyan-500'
+                          : 'bg-gradient-to-r from-blue-500/20 to-cyan-500/20 opacity-0'
+                      }`}
+                      whileHover={{ opacity: 1, scale: 1.02 }}
+                      transition={{ duration: 0.2 }}
+                    />
                     <span className="relative z-10">Zirai İlaç</span>
                   </Link>
                   <Link
@@ -110,14 +151,18 @@ export default function Navigation() {
                     className={`relative block px-4 py-3 text-sm font-medium transition-all overflow-hidden group/item ${
                       isActive('/damla-sulama')
                         ? 'text-white'
-                        : 'text-gray-700'
+                        : 'text-gray-300'
                     }`}
                   >
-                    <span className={`absolute inset-0 transition-all duration-300 ${
-                      isActive('/damla-sulama')
-                        ? 'bg-gradient-to-r from-emerald-500 to-green-500'
-                        : 'bg-gradient-to-r from-emerald-50 to-green-50 opacity-0 group-hover/item:opacity-100'
-                    }`} />
+                    <motion.span
+                      className={`absolute inset-0 ${
+                        isActive('/damla-sulama')
+                          ? 'bg-gradient-to-r from-blue-500 to-cyan-500'
+                          : 'bg-gradient-to-r from-blue-500/20 to-cyan-500/20 opacity-0'
+                      }`}
+                      whileHover={{ opacity: 1, scale: 1.02 }}
+                      transition={{ duration: 0.2 }}
+                    />
                     <span className="relative z-10">Damla Sulama</span>
                   </Link>
                   <Link
@@ -125,14 +170,18 @@ export default function Navigation() {
                     className={`relative block px-4 py-3 text-sm font-medium transition-all overflow-hidden group/item ${
                       isActive('/faaliyetlerimiz')
                         ? 'text-white'
-                        : 'text-gray-700'
+                        : 'text-gray-300'
                     }`}
                   >
-                    <span className={`absolute inset-0 transition-all duration-300 ${
-                      isActive('/faaliyetlerimiz')
-                        ? 'bg-gradient-to-r from-emerald-500 to-green-500'
-                        : 'bg-gradient-to-r from-emerald-50 to-green-50 opacity-0 group-hover/item:opacity-100'
-                    }`} />
+                    <motion.span
+                      className={`absolute inset-0 ${
+                        isActive('/faaliyetlerimiz')
+                          ? 'bg-gradient-to-r from-blue-500 to-cyan-500'
+                          : 'bg-gradient-to-r from-blue-500/20 to-cyan-500/20 opacity-0'
+                      }`}
+                      whileHover={{ opacity: 1, scale: 1.02 }}
+                      transition={{ duration: 0.2 }}
+                    />
                     <span className="relative z-10">Faaliyetlerimiz</span>
                   </Link>
                 </div>
@@ -143,39 +192,57 @@ export default function Navigation() {
               <button
                 className={`relative px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 overflow-hidden flex items-center gap-2 ${
                   isActive('/hakkimizda') || isActive('/referanslar')
-                    ? 'text-emerald-600 shadow-lg'
+                    ? 'text-slate-900 shadow-lg shadow-blue-500/50'
                     : 'text-white hover:text-white'
                 }`}
               >
-                <span className={`absolute inset-0 transition-all duration-300 ${
-                  isActive('/hakkimizda') || isActive('/referanslar')
-                    ? 'bg-white'
-                    : 'bg-white/0 group-hover:bg-white/20'
-                }`} />
+                <motion.span
+                  className={`absolute inset-0 ${
+                    isActive('/hakkimizda') || isActive('/referanslar')
+                      ? 'bg-gradient-to-r from-blue-400 to-cyan-400'
+                      : 'bg-white/0'
+                  }`}
+                  whileHover={!(isActive('/hakkimizda') || isActive('/referanslar')) ? {
+                    backgroundColor: 'rgba(255, 255, 255, 0.15)',
+                    scale: 1.05
+                  } : {}}
+                  transition={{ duration: 0.2 }}
+                />
                 <span className="relative z-10 flex items-center gap-2">
                   Kurumsal
-                  <ChevronDown size={16} className="group-hover:rotate-180 transition-transform duration-300" />
+                  <motion.div
+                    animate={{ rotate: 0 }}
+                    whileHover={{ rotate: 180 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <ChevronDown size={16} />
+                  </motion.div>
                 </span>
               </button>
               <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                whileHover={{ opacity: 1, y: 0 }}
-                className="absolute left-0 top-full mt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300"
+                initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                whileHover={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.2 }}
+                className="absolute left-0 top-full mt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible"
               >
-                <div className="bg-white rounded-2xl shadow-2xl py-3 w-60 border border-emerald-100">
+                <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl shadow-2xl py-3 w-60 border border-blue-500/30 backdrop-blur-xl">
                   <Link
                     to="/hakkimizda"
                     className={`relative block px-4 py-3 text-sm font-medium transition-all overflow-hidden group/item ${
                       isActive('/hakkimizda')
                         ? 'text-white'
-                        : 'text-gray-700'
+                        : 'text-gray-300'
                     }`}
                   >
-                    <span className={`absolute inset-0 transition-all duration-300 ${
-                      isActive('/hakkimizda')
-                        ? 'bg-gradient-to-r from-emerald-500 to-green-500'
-                        : 'bg-gradient-to-r from-emerald-50 to-green-50 opacity-0 group-hover/item:opacity-100'
-                    }`} />
+                    <motion.span
+                      className={`absolute inset-0 ${
+                        isActive('/hakkimizda')
+                          ? 'bg-gradient-to-r from-blue-500 to-cyan-500'
+                          : 'bg-gradient-to-r from-blue-500/20 to-cyan-500/20 opacity-0'
+                      }`}
+                      whileHover={{ opacity: 1, scale: 1.02 }}
+                      transition={{ duration: 0.2 }}
+                    />
                     <span className="relative z-10">Hakkımızda</span>
                   </Link>
                   <Link
@@ -183,14 +250,18 @@ export default function Navigation() {
                     className={`relative block px-4 py-3 text-sm font-medium transition-all overflow-hidden group/item ${
                       isActive('/referanslar')
                         ? 'text-white'
-                        : 'text-gray-700'
+                        : 'text-gray-300'
                     }`}
                   >
-                    <span className={`absolute inset-0 transition-all duration-300 ${
-                      isActive('/referanslar')
-                        ? 'bg-gradient-to-r from-emerald-500 to-green-500'
-                        : 'bg-gradient-to-r from-emerald-50 to-green-50 opacity-0 group-hover/item:opacity-100'
-                    }`} />
+                    <motion.span
+                      className={`absolute inset-0 ${
+                        isActive('/referanslar')
+                          ? 'bg-gradient-to-r from-blue-500 to-cyan-500'
+                          : 'bg-gradient-to-r from-blue-500/20 to-cyan-500/20 opacity-0'
+                      }`}
+                      whileHover={{ opacity: 1, scale: 1.02 }}
+                      transition={{ duration: 0.2 }}
+                    />
                     <span className="relative z-10">Referanslar</span>
                   </Link>
                 </div>
@@ -201,26 +272,41 @@ export default function Navigation() {
               to="/iletisim"
               className={`relative px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 overflow-hidden group ${
                 isActive('/iletisim')
-                  ? 'text-emerald-600 shadow-lg'
+                  ? 'text-slate-900 shadow-lg shadow-blue-500/50'
                   : 'text-white hover:text-white'
               }`}
             >
-              <span className={`absolute inset-0 transition-all duration-300 ${
-                isActive('/iletisim')
-                  ? 'bg-white'
-                  : 'bg-white/0 group-hover:bg-white/20'
-              }`} />
+              <motion.span
+                className={`absolute inset-0 ${
+                  isActive('/iletisim')
+                    ? 'bg-gradient-to-r from-blue-400 to-cyan-400'
+                    : 'bg-white/0'
+                }`}
+                whileHover={!isActive('/iletisim') ? {
+                  backgroundColor: 'rgba(255, 255, 255, 0.15)',
+                  scale: 1.05
+                } : {}}
+                transition={{ duration: 0.2 }}
+              />
               <span className="relative z-10">İletişim</span>
             </Link>
           </div>
 
           {/* Mobile Menu Button */}
-          <button
+          <motion.button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="lg:hidden text-white hover:bg-white/20 p-2 rounded-lg transition-all duration-300"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
           >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+            <motion.div
+              initial={false}
+              animate={{ rotate: isMobileMenuOpen ? 90 : 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </motion.div>
+          </motion.button>
         </div>
 
         {/* Mobile Menu */}
@@ -230,22 +316,26 @@ export default function Navigation() {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="lg:hidden bg-gradient-to-br from-emerald-600 via-green-600 to-teal-600 border-t border-white/20"
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="lg:hidden bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 border-t border-blue-500/30"
             >
               <div className="flex flex-col gap-2 px-4 py-6">
                 <Link
                   to="/"
                   className={`relative py-3 px-4 rounded-xl text-sm font-semibold transition-all overflow-hidden ${
                     isActive('/')
-                      ? 'text-emerald-600'
+                      ? 'text-slate-900'
                       : 'text-white'
                   }`}
                 >
-                  <span className={`absolute inset-0 transition-all duration-300 ${
-                    isActive('/')
-                      ? 'bg-white'
-                      : 'bg-white/0 hover:bg-white/20'
-                  }`} />
+                  <motion.span
+                    className={`absolute inset-0 ${
+                      isActive('/')
+                        ? 'bg-gradient-to-r from-blue-400 to-cyan-400'
+                        : 'bg-white/0'
+                    }`}
+                    whileTap={{ scale: 0.98 }}
+                  />
                   <span className="relative z-10">Anasayfa</span>
                 </Link>
 
@@ -254,23 +344,25 @@ export default function Navigation() {
                     onClick={() => setIsHizmetlerDropdownOpen(!isHizmetlerDropdownOpen)}
                     className={`relative flex items-center gap-2 py-3 px-4 rounded-xl text-sm font-semibold w-full justify-between transition-all overflow-hidden ${
                       isActive('/zirai-ilac') || isActive('/damla-sulama') || isActive('/faaliyetlerimiz')
-                        ? 'text-emerald-600'
+                        ? 'text-slate-900'
                         : 'text-white'
                     }`}
                   >
-                    <span className={`absolute inset-0 transition-all duration-300 ${
-                      isActive('/zirai-ilac') || isActive('/damla-sulama') || isActive('/faaliyetlerimiz')
-                        ? 'bg-white'
-                        : 'bg-white/0'
-                    }`} />
+                    <motion.span
+                      className={`absolute inset-0 ${
+                        isActive('/zirai-ilac') || isActive('/damla-sulama') || isActive('/faaliyetlerimiz')
+                          ? 'bg-gradient-to-r from-blue-400 to-cyan-400'
+                          : 'bg-white/0'
+                      }`}
+                    />
                     <span className="relative z-10 flex items-center justify-between w-full">
                       Hizmetlerimiz
-                      <ChevronDown
-                        size={16}
-                        className={`transition-transform ${
-                          isHizmetlerDropdownOpen ? 'rotate-180' : ''
-                        }`}
-                      />
+                      <motion.div
+                        animate={{ rotate: isHizmetlerDropdownOpen ? 180 : 0 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <ChevronDown size={16} />
+                      </motion.div>
                     </span>
                   </button>
                   <AnimatePresence>
@@ -289,11 +381,14 @@ export default function Navigation() {
                               : 'text-white/80'
                           }`}
                         >
-                          <span className={`absolute inset-0 transition-all duration-300 ${
-                            isActive('/zirai-ilac')
-                              ? 'bg-white/30'
-                              : 'bg-white/0 hover:bg-white/10'
-                          }`} />
+                          <motion.span
+                            className={`absolute inset-0 ${
+                              isActive('/zirai-ilac')
+                                ? 'bg-blue-500/40'
+                                : 'bg-white/0'
+                            }`}
+                            whileTap={{ scale: 0.98 }}
+                          />
                           <span className="relative z-10">Zirai İlaç</span>
                         </Link>
                         <Link
@@ -304,11 +399,14 @@ export default function Navigation() {
                               : 'text-white/80'
                           }`}
                         >
-                          <span className={`absolute inset-0 transition-all duration-300 ${
-                            isActive('/damla-sulama')
-                              ? 'bg-white/30'
-                              : 'bg-white/0 hover:bg-white/10'
-                          }`} />
+                          <motion.span
+                            className={`absolute inset-0 ${
+                              isActive('/damla-sulama')
+                                ? 'bg-blue-500/40'
+                                : 'bg-white/0'
+                            }`}
+                            whileTap={{ scale: 0.98 }}
+                          />
                           <span className="relative z-10">Damla Sulama</span>
                         </Link>
                         <Link
@@ -319,11 +417,14 @@ export default function Navigation() {
                               : 'text-white/80'
                           }`}
                         >
-                          <span className={`absolute inset-0 transition-all duration-300 ${
-                            isActive('/faaliyetlerimiz')
-                              ? 'bg-white/30'
-                              : 'bg-white/0 hover:bg-white/10'
-                          }`} />
+                          <motion.span
+                            className={`absolute inset-0 ${
+                              isActive('/faaliyetlerimiz')
+                                ? 'bg-blue-500/40'
+                                : 'bg-white/0'
+                            }`}
+                            whileTap={{ scale: 0.98 }}
+                          />
                           <span className="relative z-10">Faaliyetlerimiz</span>
                         </Link>
                       </motion.div>
@@ -336,23 +437,25 @@ export default function Navigation() {
                     onClick={() => setIsKurumsalDropdownOpen(!isKurumsalDropdownOpen)}
                     className={`relative flex items-center gap-2 py-3 px-4 rounded-xl text-sm font-semibold w-full justify-between transition-all overflow-hidden ${
                       isActive('/hakkimizda') || isActive('/referanslar')
-                        ? 'text-emerald-600'
+                        ? 'text-slate-900'
                         : 'text-white'
                     }`}
                   >
-                    <span className={`absolute inset-0 transition-all duration-300 ${
-                      isActive('/hakkimizda') || isActive('/referanslar')
-                        ? 'bg-white'
-                        : 'bg-white/0'
-                    }`} />
+                    <motion.span
+                      className={`absolute inset-0 ${
+                        isActive('/hakkimizda') || isActive('/referanslar')
+                          ? 'bg-gradient-to-r from-blue-400 to-cyan-400'
+                          : 'bg-white/0'
+                      }`}
+                    />
                     <span className="relative z-10 flex items-center justify-between w-full">
                       Kurumsal
-                      <ChevronDown
-                        size={16}
-                        className={`transition-transform ${
-                          isKurumsalDropdownOpen ? 'rotate-180' : ''
-                        }`}
-                      />
+                      <motion.div
+                        animate={{ rotate: isKurumsalDropdownOpen ? 180 : 0 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <ChevronDown size={16} />
+                      </motion.div>
                     </span>
                   </button>
                   <AnimatePresence>
@@ -371,11 +474,14 @@ export default function Navigation() {
                               : 'text-white/80'
                           }`}
                         >
-                          <span className={`absolute inset-0 transition-all duration-300 ${
-                            isActive('/hakkimizda')
-                              ? 'bg-white/30'
-                              : 'bg-white/0 hover:bg-white/10'
-                          }`} />
+                          <motion.span
+                            className={`absolute inset-0 ${
+                              isActive('/hakkimizda')
+                                ? 'bg-blue-500/40'
+                                : 'bg-white/0'
+                            }`}
+                            whileTap={{ scale: 0.98 }}
+                          />
                           <span className="relative z-10">Hakkımızda</span>
                         </Link>
                         <Link
@@ -386,11 +492,14 @@ export default function Navigation() {
                               : 'text-white/80'
                           }`}
                         >
-                          <span className={`absolute inset-0 transition-all duration-300 ${
-                            isActive('/referanslar')
-                              ? 'bg-white/30'
-                              : 'bg-white/0 hover:bg-white/10'
-                          }`} />
+                          <motion.span
+                            className={`absolute inset-0 ${
+                              isActive('/referanslar')
+                                ? 'bg-blue-500/40'
+                                : 'bg-white/0'
+                            }`}
+                            whileTap={{ scale: 0.98 }}
+                          />
                           <span className="relative z-10">Referanslar</span>
                         </Link>
                       </motion.div>
@@ -402,15 +511,18 @@ export default function Navigation() {
                   to="/iletisim"
                   className={`relative py-3 px-4 rounded-xl text-sm font-semibold transition-all overflow-hidden ${
                     isActive('/iletisim')
-                      ? 'text-emerald-600'
+                      ? 'text-slate-900'
                       : 'text-white'
                   }`}
                 >
-                  <span className={`absolute inset-0 transition-all duration-300 ${
-                    isActive('/iletisim')
-                      ? 'bg-white'
-                      : 'bg-white/0 hover:bg-white/20'
-                  }`} />
+                  <motion.span
+                    className={`absolute inset-0 ${
+                      isActive('/iletisim')
+                        ? 'bg-gradient-to-r from-blue-400 to-cyan-400'
+                        : 'bg-white/0'
+                    }`}
+                    whileTap={{ scale: 0.98 }}
+                  />
                   <span className="relative z-10">İletişim</span>
                 </Link>
               </div>
@@ -418,6 +530,6 @@ export default function Navigation() {
           )}
         </AnimatePresence>
       </div>
-    </nav>
+    </motion.nav>
   );
 }
