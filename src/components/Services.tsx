@@ -100,13 +100,21 @@ export default function Services() {
           <div
             className="flex gap-6 md:gap-8 px-4 animate-marquee has-[:hover]:[animation-play-state:paused]"
           >
-            {/* Original set */}
+            {/* First set */}
             {services.map((service, index) => (
-              <ServiceCard key={`original-${index}`} service={service} index={index} />
+              <ServiceCard key={`set1-${index}`} service={service} index={index} />
             ))}
-            {/* Duplicate set for infinite loop */}
+            {/* Second set */}
             {services.map((service, index) => (
-              <ServiceCard key={`duplicate-${index}`} service={service} index={index} />
+              <ServiceCard key={`set2-${index}`} service={service} index={index} />
+            ))}
+            {/* Third set */}
+            {services.map((service, index) => (
+              <ServiceCard key={`set3-${index}`} service={service} index={index} />
+            ))}
+            {/* Fourth set */}
+            {services.map((service, index) => (
+              <ServiceCard key={`set4-${index}`} service={service} index={index} />
             ))}
           </div>
         </div>
