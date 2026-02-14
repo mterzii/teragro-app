@@ -33,8 +33,8 @@ export default function Navigation() {
     <nav
       className={`fixed w-full z-50 transition-all duration-500 ${
         isScrolled
-          ? 'bg-gradient-to-r from-emerald-600 via-green-600 to-teal-600 shadow-2xl shadow-emerald-500/20'
-          : 'bg-gradient-to-r from-emerald-500/95 via-green-500/95 to-teal-500/95 backdrop-blur-md'
+          ? 'bg-gradient-to-r from-emerald-800 via-green-800 to-teal-800 shadow-2xl shadow-emerald-900/30'
+          : 'bg-gradient-to-r from-emerald-700/98 via-green-700/98 to-teal-700/98 backdrop-blur-md'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 md:px-8">
@@ -54,7 +54,7 @@ export default function Navigation() {
               to="/"
               className={`relative px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 overflow-hidden group ${
                 isActive('/')
-                  ? 'text-emerald-600 shadow-lg'
+                  ? 'text-emerald-700 shadow-lg'
                   : 'text-white hover:text-white'
               }`}
             >
@@ -70,7 +70,7 @@ export default function Navigation() {
               <button
                 className={`relative px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 overflow-hidden flex items-center gap-2 ${
                   isActive('/zirai-ilac') || isActive('/damla-sulama') || isActive('/faaliyetlerimiz')
-                    ? 'text-emerald-600 shadow-lg'
+                    ? 'text-emerald-700 shadow-lg'
                     : 'text-white hover:text-white'
                 }`}
               >
@@ -100,7 +100,7 @@ export default function Navigation() {
                   >
                     <span className={`absolute inset-0 transition-all duration-300 ${
                       isActive('/zirai-ilac')
-                        ? 'bg-gradient-to-r from-emerald-500 to-green-500'
+                        ? 'bg-gradient-to-r from-emerald-700 to-green-700'
                         : 'bg-gradient-to-r from-emerald-50 to-green-50 opacity-0 group-hover/item:opacity-100'
                     }`} />
                     <span className="relative z-10">Zirai İlaç</span>
@@ -115,7 +115,7 @@ export default function Navigation() {
                   >
                     <span className={`absolute inset-0 transition-all duration-300 ${
                       isActive('/damla-sulama')
-                        ? 'bg-gradient-to-r from-emerald-500 to-green-500'
+                        ? 'bg-gradient-to-r from-emerald-700 to-green-700'
                         : 'bg-gradient-to-r from-emerald-50 to-green-50 opacity-0 group-hover/item:opacity-100'
                     }`} />
                     <span className="relative z-10">Damla Sulama</span>
@@ -130,7 +130,7 @@ export default function Navigation() {
                   >
                     <span className={`absolute inset-0 transition-all duration-300 ${
                       isActive('/faaliyetlerimiz')
-                        ? 'bg-gradient-to-r from-emerald-500 to-green-500'
+                        ? 'bg-gradient-to-r from-emerald-700 to-green-700'
                         : 'bg-gradient-to-r from-emerald-50 to-green-50 opacity-0 group-hover/item:opacity-100'
                     }`} />
                     <span className="relative z-10">Faaliyetlerimiz</span>
@@ -143,7 +143,7 @@ export default function Navigation() {
               <button
                 className={`relative px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 overflow-hidden flex items-center gap-2 ${
                   isActive('/hakkimizda') || isActive('/referanslar')
-                    ? 'text-emerald-600 shadow-lg'
+                    ? 'text-emerald-700 shadow-lg'
                     : 'text-white hover:text-white'
                 }`}
               >
@@ -173,7 +173,7 @@ export default function Navigation() {
                   >
                     <span className={`absolute inset-0 transition-all duration-300 ${
                       isActive('/hakkimizda')
-                        ? 'bg-gradient-to-r from-emerald-500 to-green-500'
+                        ? 'bg-gradient-to-r from-emerald-700 to-green-700'
                         : 'bg-gradient-to-r from-emerald-50 to-green-50 opacity-0 group-hover/item:opacity-100'
                     }`} />
                     <span className="relative z-10">Hakkımızda</span>
@@ -188,7 +188,7 @@ export default function Navigation() {
                   >
                     <span className={`absolute inset-0 transition-all duration-300 ${
                       isActive('/referanslar')
-                        ? 'bg-gradient-to-r from-emerald-500 to-green-500'
+                        ? 'bg-gradient-to-r from-emerald-700 to-green-700'
                         : 'bg-gradient-to-r from-emerald-50 to-green-50 opacity-0 group-hover/item:opacity-100'
                     }`} />
                     <span className="relative z-10">Referanslar</span>
@@ -201,7 +201,7 @@ export default function Navigation() {
               to="/iletisim"
               className={`relative px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 overflow-hidden group ${
                 isActive('/iletisim')
-                  ? 'text-emerald-600 shadow-lg'
+                  ? 'text-emerald-700 shadow-lg'
                   : 'text-white hover:text-white'
               }`}
             >
@@ -230,14 +230,14 @@ export default function Navigation() {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="lg:hidden bg-gradient-to-br from-emerald-600 via-green-600 to-teal-600 border-t border-white/20"
+              className="lg:hidden bg-gradient-to-br from-emerald-800 via-green-800 to-teal-800 border-t border-white/20"
             >
               <div className="flex flex-col gap-2 px-4 py-6">
                 <Link
                   to="/"
                   className={`relative py-3 px-4 rounded-xl text-sm font-semibold transition-all overflow-hidden ${
                     isActive('/')
-                      ? 'text-emerald-600'
+                      ? 'text-emerald-700'
                       : 'text-white'
                   }`}
                 >
@@ -254,7 +254,7 @@ export default function Navigation() {
                     onClick={() => setIsHizmetlerDropdownOpen(!isHizmetlerDropdownOpen)}
                     className={`relative flex items-center gap-2 py-3 px-4 rounded-xl text-sm font-semibold w-full justify-between transition-all overflow-hidden ${
                       isActive('/zirai-ilac') || isActive('/damla-sulama') || isActive('/faaliyetlerimiz')
-                        ? 'text-emerald-600'
+                        ? 'text-emerald-700'
                         : 'text-white'
                     }`}
                   >
@@ -336,7 +336,7 @@ export default function Navigation() {
                     onClick={() => setIsKurumsalDropdownOpen(!isKurumsalDropdownOpen)}
                     className={`relative flex items-center gap-2 py-3 px-4 rounded-xl text-sm font-semibold w-full justify-between transition-all overflow-hidden ${
                       isActive('/hakkimizda') || isActive('/referanslar')
-                        ? 'text-emerald-600'
+                        ? 'text-emerald-700'
                         : 'text-white'
                     }`}
                   >
@@ -402,7 +402,7 @@ export default function Navigation() {
                   to="/iletisim"
                   className={`relative py-3 px-4 rounded-xl text-sm font-semibold transition-all overflow-hidden ${
                     isActive('/iletisim')
-                      ? 'text-emerald-600'
+                      ? 'text-emerald-700'
                       : 'text-white'
                   }`}
                 >
