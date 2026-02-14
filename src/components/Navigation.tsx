@@ -95,7 +95,10 @@ export default function Navigation() {
 
             <div className="relative">
               <button
-                onClick={() => setIsDesktopHizmetlerOpen(!isDesktopHizmetlerOpen)}
+                onClick={() => {
+                  setIsDesktopHizmetlerOpen(!isDesktopHizmetlerOpen);
+                  setIsDesktopKurumsalOpen(false);
+                }}
                 className={`relative px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 overflow-hidden flex items-center gap-2 ${
                   isActive('/zirai-ilac') || isActive('/damla-sulama') || isActive('/faaliyetlerimiz')
                     ? 'text-gray-900 shadow-lg shadow-green-500/50'
@@ -199,7 +202,10 @@ export default function Navigation() {
 
             <div className="relative">
               <button
-                onClick={() => setIsDesktopKurumsalOpen(!isDesktopKurumsalOpen)}
+                onClick={() => {
+                  setIsDesktopKurumsalOpen(!isDesktopKurumsalOpen);
+                  setIsDesktopHizmetlerOpen(false);
+                }}
                 className={`relative px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 overflow-hidden flex items-center gap-2 ${
                   isActive('/hakkimizda') || isActive('/referanslar')
                     ? 'text-gray-900 shadow-lg shadow-green-500/50'
@@ -355,7 +361,10 @@ export default function Navigation() {
 
                 <div>
                   <button
-                    onClick={() => setIsHizmetlerDropdownOpen(!isHizmetlerDropdownOpen)}
+                    onClick={() => {
+                      setIsHizmetlerDropdownOpen(!isHizmetlerDropdownOpen);
+                      setIsKurumsalDropdownOpen(false);
+                    }}
                     className={`relative flex items-center gap-2 py-3 px-4 rounded-xl text-sm font-semibold w-full justify-between transition-all overflow-hidden ${
                       isActive('/zirai-ilac') || isActive('/damla-sulama') || isActive('/faaliyetlerimiz')
                         ? 'text-gray-900'
@@ -448,7 +457,10 @@ export default function Navigation() {
 
                 <div>
                   <button
-                    onClick={() => setIsKurumsalDropdownOpen(!isKurumsalDropdownOpen)}
+                    onClick={() => {
+                      setIsKurumsalDropdownOpen(!isKurumsalDropdownOpen);
+                      setIsHizmetlerDropdownOpen(false);
+                    }}
                     className={`relative flex items-center gap-2 py-3 px-4 rounded-xl text-sm font-semibold w-full justify-between transition-all overflow-hidden ${
                       isActive('/hakkimizda') || isActive('/referanslar')
                         ? 'text-gray-900'
