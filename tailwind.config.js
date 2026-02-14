@@ -19,7 +19,7 @@ export default {
       },
       animation: {
         marquee: 'marquee 1s linear infinite',
-      },
+      }7
     },
   },
   plugins: [],
