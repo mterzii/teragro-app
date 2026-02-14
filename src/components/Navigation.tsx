@@ -10,6 +10,8 @@ export default function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isHizmetlerDropdownOpen, setIsHizmetlerDropdownOpen] = useState(false);
   const [isKurumsalDropdownOpen, setIsKurumsalDropdownOpen] = useState(false);
+  const [isDesktopHizmetlerOpen, setIsDesktopHizmetlerOpen] = useState(false);
+  const [isDesktopKurumsalOpen, setIsDesktopKurumsalOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -25,6 +27,8 @@ export default function Navigation() {
     setIsMobileMenuOpen(false);
     setIsHizmetlerDropdownOpen(false);
     setIsKurumsalDropdownOpen(false);
+    setIsDesktopHizmetlerOpen(false);
+    setIsDesktopKurumsalOpen(false);
   }, [location]);
 
   const isActive = (path: string) => location.pathname === path;
@@ -36,15 +40,15 @@ export default function Navigation() {
       transition={{ type: "spring", stiffness: 100, damping: 20 }}
       className={`fixed w-full z-50 transition-all duration-700 ${
         isScrolled
-          ? 'bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900 shadow-2xl shadow-blue-500/30 border-b border-blue-500/20'
-          : 'bg-gradient-to-r from-slate-900/95 via-blue-900/95 to-slate-900/95 backdrop-blur-xl border-b border-white/10'
+          ? 'bg-gradient-to-r from-gray-900 via-green-900 to-emerald-900 shadow-2xl shadow-green-500/30 border-b border-green-500/20'
+          : 'bg-gradient-to-r from-gray-900/95 via-green-900/95 to-emerald-900/95 backdrop-blur-xl border-b border-white/10'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <div className="flex items-center justify-between h-20">
           <Link to="/" className="flex items-center group relative">
             <motion.div
-              className="absolute inset-0 bg-blue-500/20 rounded-2xl blur-xl"
+              className="absolute inset-0 bg-green-500/20 rounded-2xl blur-xl"
               animate={{
                 scale: [1, 1.2, 1],
                 opacity: [0.3, 0.5, 0.3]
@@ -70,14 +74,14 @@ export default function Navigation() {
               to="/"
               className={`relative px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 overflow-hidden group ${
                 isActive('/')
-                  ? 'text-slate-900 shadow-lg shadow-blue-500/50'
+                  ? 'text-gray-900 shadow-lg shadow-green-500/50'
                   : 'text-white hover:text-white'
               }`}
             >
               <motion.span
                 className={`absolute inset-0 ${
                   isActive('/')
-                    ? 'bg-gradient-to-r from-blue-400 to-cyan-400'
+                    ? 'bg-gradient-to-r from-green-400 to-emerald-400'
                     : 'bg-white/0'
                 }`}
                 whileHover={!isActive('/') ? {
@@ -89,18 +93,19 @@ export default function Navigation() {
               <span className="relative z-10">Anasayfa</span>
             </Link>
 
-            <div className="relative group">
+            <div className="relative">
               <button
+                onClick={() => setIsDesktopHizmetlerOpen(!isDesktopHizmetlerOpen)}
                 className={`relative px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 overflow-hidden flex items-center gap-2 ${
                   isActive('/zirai-ilac') || isActive('/damla-sulama') || isActive('/faaliyetlerimiz')
-                    ? 'text-slate-900 shadow-lg shadow-blue-500/50'
+                    ? 'text-gray-900 shadow-lg shadow-green-500/50'
                     : 'text-white hover:text-white'
                 }`}
               >
                 <motion.span
                   className={`absolute inset-0 ${
                     isActive('/zirai-ilac') || isActive('/damla-sulama') || isActive('/faaliyetlerimiz')
-                      ? 'bg-gradient-to-r from-blue-400 to-cyan-400'
+                      ? 'bg-gradient-to-r from-green-400 to-emerald-400'
                       : 'bg-white/0'
                   }`}
                   whileHover={!(isActive('/zirai-ilac') || isActive('/damla-sulama') || isActive('/faaliyetlerimiz')) ? {
@@ -112,94 +117,99 @@ export default function Navigation() {
                 <span className="relative z-10 flex items-center gap-2">
                   Hizmetlerimiz
                   <motion.div
-                    animate={{ rotate: 0 }}
-                    whileHover={{ rotate: 180 }}
+                    animate={{ rotate: isDesktopHizmetlerOpen ? 180 : 0 }}
                     transition={{ duration: 0.3 }}
                   >
                     <ChevronDown size={16} />
                   </motion.div>
                 </span>
               </button>
-              <motion.div
-                initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                whileHover={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ duration: 0.2 }}
-                className="absolute left-0 top-full mt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible"
-              >
-                <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl shadow-2xl py-3 w-60 border border-blue-500/30 backdrop-blur-xl">
-                  <Link
-                    to="/zirai-ilac"
-                    className={`relative block px-4 py-3 text-sm font-medium transition-all overflow-hidden group/item ${
-                      isActive('/zirai-ilac')
-                        ? 'text-white'
-                        : 'text-gray-300'
-                    }`}
+              <AnimatePresence>
+                {isDesktopHizmetlerOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute left-0 top-full mt-3 z-50"
                   >
-                    <motion.span
-                      className={`absolute inset-0 ${
-                        isActive('/zirai-ilac')
-                          ? 'bg-gradient-to-r from-blue-500 to-cyan-500'
-                          : 'bg-gradient-to-r from-blue-500/20 to-cyan-500/20 opacity-0'
-                      }`}
-                      whileHover={{ opacity: 1, scale: 1.02 }}
-                      transition={{ duration: 0.2 }}
-                    />
-                    <span className="relative z-10">Zirai İlaç</span>
-                  </Link>
-                  <Link
-                    to="/damla-sulama"
-                    className={`relative block px-4 py-3 text-sm font-medium transition-all overflow-hidden group/item ${
-                      isActive('/damla-sulama')
-                        ? 'text-white'
-                        : 'text-gray-300'
-                    }`}
-                  >
-                    <motion.span
-                      className={`absolute inset-0 ${
-                        isActive('/damla-sulama')
-                          ? 'bg-gradient-to-r from-blue-500 to-cyan-500'
-                          : 'bg-gradient-to-r from-blue-500/20 to-cyan-500/20 opacity-0'
-                      }`}
-                      whileHover={{ opacity: 1, scale: 1.02 }}
-                      transition={{ duration: 0.2 }}
-                    />
-                    <span className="relative z-10">Damla Sulama</span>
-                  </Link>
-                  <Link
-                    to="/faaliyetlerimiz"
-                    className={`relative block px-4 py-3 text-sm font-medium transition-all overflow-hidden group/item ${
-                      isActive('/faaliyetlerimiz')
-                        ? 'text-white'
-                        : 'text-gray-300'
-                    }`}
-                  >
-                    <motion.span
-                      className={`absolute inset-0 ${
-                        isActive('/faaliyetlerimiz')
-                          ? 'bg-gradient-to-r from-blue-500 to-cyan-500'
-                          : 'bg-gradient-to-r from-blue-500/20 to-cyan-500/20 opacity-0'
-                      }`}
-                      whileHover={{ opacity: 1, scale: 1.02 }}
-                      transition={{ duration: 0.2 }}
-                    />
-                    <span className="relative z-10">Faaliyetlerimiz</span>
-                  </Link>
-                </div>
-              </motion.div>
+                    <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl shadow-2xl py-3 w-60 border border-green-500/30 backdrop-blur-xl">
+                      <Link
+                        to="/zirai-ilac"
+                        className={`relative block px-4 py-3 text-sm font-medium transition-all overflow-hidden group/item ${
+                          isActive('/zirai-ilac')
+                            ? 'text-white'
+                            : 'text-gray-300'
+                        }`}
+                      >
+                        <motion.span
+                          className={`absolute inset-0 ${
+                            isActive('/zirai-ilac')
+                              ? 'bg-gradient-to-r from-green-500 to-emerald-500'
+                              : 'bg-gradient-to-r from-green-500/20 to-emerald-500/20 opacity-0'
+                          }`}
+                          whileHover={{ opacity: 1, scale: 1.02 }}
+                          transition={{ duration: 0.2 }}
+                        />
+                        <span className="relative z-10">Zirai İlaç</span>
+                      </Link>
+                      <Link
+                        to="/damla-sulama"
+                        className={`relative block px-4 py-3 text-sm font-medium transition-all overflow-hidden group/item ${
+                          isActive('/damla-sulama')
+                            ? 'text-white'
+                            : 'text-gray-300'
+                        }`}
+                      >
+                        <motion.span
+                          className={`absolute inset-0 ${
+                            isActive('/damla-sulama')
+                              ? 'bg-gradient-to-r from-green-500 to-emerald-500'
+                              : 'bg-gradient-to-r from-green-500/20 to-emerald-500/20 opacity-0'
+                          }`}
+                          whileHover={{ opacity: 1, scale: 1.02 }}
+                          transition={{ duration: 0.2 }}
+                        />
+                        <span className="relative z-10">Damla Sulama</span>
+                      </Link>
+                      <Link
+                        to="/faaliyetlerimiz"
+                        className={`relative block px-4 py-3 text-sm font-medium transition-all overflow-hidden group/item ${
+                          isActive('/faaliyetlerimiz')
+                            ? 'text-white'
+                            : 'text-gray-300'
+                        }`}
+                      >
+                        <motion.span
+                          className={`absolute inset-0 ${
+                            isActive('/faaliyetlerimiz')
+                              ? 'bg-gradient-to-r from-green-500 to-emerald-500'
+                              : 'bg-gradient-to-r from-green-500/20 to-emerald-500/20 opacity-0'
+                          }`}
+                          whileHover={{ opacity: 1, scale: 1.02 }}
+                          transition={{ duration: 0.2 }}
+                        />
+                        <span className="relative z-10">Faaliyetlerimiz</span>
+                      </Link>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
 
-            <div className="relative group">
+            <div className="relative">
               <button
+                onClick={() => setIsDesktopKurumsalOpen(!isDesktopKurumsalOpen)}
                 className={`relative px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 overflow-hidden flex items-center gap-2 ${
                   isActive('/hakkimizda') || isActive('/referanslar')
-                    ? 'text-slate-900 shadow-lg shadow-blue-500/50'
+                    ? 'text-gray-900 shadow-lg shadow-green-500/50'
                     : 'text-white hover:text-white'
                 }`}
               >
                 <motion.span
                   className={`absolute inset-0 ${
                     isActive('/hakkimizda') || isActive('/referanslar')
-                      ? 'bg-gradient-to-r from-blue-400 to-cyan-400'
+                      ? 'bg-gradient-to-r from-green-400 to-emerald-400'
                       : 'bg-white/0'
                   }`}
                   whileHover={!(isActive('/hakkimizda') || isActive('/referanslar')) ? {
@@ -211,75 +221,79 @@ export default function Navigation() {
                 <span className="relative z-10 flex items-center gap-2">
                   Kurumsal
                   <motion.div
-                    animate={{ rotate: 0 }}
-                    whileHover={{ rotate: 180 }}
+                    animate={{ rotate: isDesktopKurumsalOpen ? 180 : 0 }}
                     transition={{ duration: 0.3 }}
                   >
                     <ChevronDown size={16} />
                   </motion.div>
                 </span>
               </button>
-              <motion.div
-                initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                whileHover={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ duration: 0.2 }}
-                className="absolute left-0 top-full mt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible"
-              >
-                <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl shadow-2xl py-3 w-60 border border-blue-500/30 backdrop-blur-xl">
-                  <Link
-                    to="/hakkimizda"
-                    className={`relative block px-4 py-3 text-sm font-medium transition-all overflow-hidden group/item ${
-                      isActive('/hakkimizda')
-                        ? 'text-white'
-                        : 'text-gray-300'
-                    }`}
+              <AnimatePresence>
+                {isDesktopKurumsalOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute left-0 top-full mt-3 z-50"
                   >
-                    <motion.span
-                      className={`absolute inset-0 ${
-                        isActive('/hakkimizda')
-                          ? 'bg-gradient-to-r from-blue-500 to-cyan-500'
-                          : 'bg-gradient-to-r from-blue-500/20 to-cyan-500/20 opacity-0'
-                      }`}
-                      whileHover={{ opacity: 1, scale: 1.02 }}
-                      transition={{ duration: 0.2 }}
-                    />
-                    <span className="relative z-10">Hakkımızda</span>
-                  </Link>
-                  <Link
-                    to="/referanslar"
-                    className={`relative block px-4 py-3 text-sm font-medium transition-all overflow-hidden group/item ${
-                      isActive('/referanslar')
-                        ? 'text-white'
-                        : 'text-gray-300'
-                    }`}
-                  >
-                    <motion.span
-                      className={`absolute inset-0 ${
-                        isActive('/referanslar')
-                          ? 'bg-gradient-to-r from-blue-500 to-cyan-500'
-                          : 'bg-gradient-to-r from-blue-500/20 to-cyan-500/20 opacity-0'
-                      }`}
-                      whileHover={{ opacity: 1, scale: 1.02 }}
-                      transition={{ duration: 0.2 }}
-                    />
-                    <span className="relative z-10">Referanslar</span>
-                  </Link>
-                </div>
-              </motion.div>
+                    <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl shadow-2xl py-3 w-60 border border-green-500/30 backdrop-blur-xl">
+                      <Link
+                        to="/hakkimizda"
+                        className={`relative block px-4 py-3 text-sm font-medium transition-all overflow-hidden group/item ${
+                          isActive('/hakkimizda')
+                            ? 'text-white'
+                            : 'text-gray-300'
+                        }`}
+                      >
+                        <motion.span
+                          className={`absolute inset-0 ${
+                            isActive('/hakkimizda')
+                              ? 'bg-gradient-to-r from-green-500 to-emerald-500'
+                              : 'bg-gradient-to-r from-green-500/20 to-emerald-500/20 opacity-0'
+                          }`}
+                          whileHover={{ opacity: 1, scale: 1.02 }}
+                          transition={{ duration: 0.2 }}
+                        />
+                        <span className="relative z-10">Hakkımızda</span>
+                      </Link>
+                      <Link
+                        to="/referanslar"
+                        className={`relative block px-4 py-3 text-sm font-medium transition-all overflow-hidden group/item ${
+                          isActive('/referanslar')
+                            ? 'text-white'
+                            : 'text-gray-300'
+                        }`}
+                      >
+                        <motion.span
+                          className={`absolute inset-0 ${
+                            isActive('/referanslar')
+                              ? 'bg-gradient-to-r from-green-500 to-emerald-500'
+                              : 'bg-gradient-to-r from-green-500/20 to-emerald-500/20 opacity-0'
+                          }`}
+                          whileHover={{ opacity: 1, scale: 1.02 }}
+                          transition={{ duration: 0.2 }}
+                        />
+                        <span className="relative z-10">Referanslar</span>
+                      </Link>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
 
             <Link
               to="/iletisim"
               className={`relative px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 overflow-hidden group ${
                 isActive('/iletisim')
-                  ? 'text-slate-900 shadow-lg shadow-blue-500/50'
+                  ? 'text-gray-900 shadow-lg shadow-green-500/50'
                   : 'text-white hover:text-white'
               }`}
             >
               <motion.span
                 className={`absolute inset-0 ${
                   isActive('/iletisim')
-                    ? 'bg-gradient-to-r from-blue-400 to-cyan-400'
+                    ? 'bg-gradient-to-r from-green-400 to-emerald-400'
                     : 'bg-white/0'
                 }`}
                 whileHover={!isActive('/iletisim') ? {
@@ -317,21 +331,21 @@ export default function Navigation() {
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="lg:hidden bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 border-t border-blue-500/30"
+              className="lg:hidden bg-gradient-to-br from-gray-900 via-green-900 to-emerald-900 border-t border-green-500/30"
             >
               <div className="flex flex-col gap-2 px-4 py-6">
                 <Link
                   to="/"
                   className={`relative py-3 px-4 rounded-xl text-sm font-semibold transition-all overflow-hidden ${
                     isActive('/')
-                      ? 'text-slate-900'
+                      ? 'text-gray-900'
                       : 'text-white'
                   }`}
                 >
                   <motion.span
                     className={`absolute inset-0 ${
                       isActive('/')
-                        ? 'bg-gradient-to-r from-blue-400 to-cyan-400'
+                        ? 'bg-gradient-to-r from-green-400 to-emerald-400'
                         : 'bg-white/0'
                     }`}
                     whileTap={{ scale: 0.98 }}
@@ -344,14 +358,14 @@ export default function Navigation() {
                     onClick={() => setIsHizmetlerDropdownOpen(!isHizmetlerDropdownOpen)}
                     className={`relative flex items-center gap-2 py-3 px-4 rounded-xl text-sm font-semibold w-full justify-between transition-all overflow-hidden ${
                       isActive('/zirai-ilac') || isActive('/damla-sulama') || isActive('/faaliyetlerimiz')
-                        ? 'text-slate-900'
+                        ? 'text-gray-900'
                         : 'text-white'
                     }`}
                   >
                     <motion.span
                       className={`absolute inset-0 ${
                         isActive('/zirai-ilac') || isActive('/damla-sulama') || isActive('/faaliyetlerimiz')
-                          ? 'bg-gradient-to-r from-blue-400 to-cyan-400'
+                          ? 'bg-gradient-to-r from-green-400 to-emerald-400'
                           : 'bg-white/0'
                       }`}
                     />
@@ -384,7 +398,7 @@ export default function Navigation() {
                           <motion.span
                             className={`absolute inset-0 ${
                               isActive('/zirai-ilac')
-                                ? 'bg-blue-500/40'
+                                ? 'bg-green-500/40'
                                 : 'bg-white/0'
                             }`}
                             whileTap={{ scale: 0.98 }}
@@ -402,7 +416,7 @@ export default function Navigation() {
                           <motion.span
                             className={`absolute inset-0 ${
                               isActive('/damla-sulama')
-                                ? 'bg-blue-500/40'
+                                ? 'bg-green-500/40'
                                 : 'bg-white/0'
                             }`}
                             whileTap={{ scale: 0.98 }}
@@ -420,7 +434,7 @@ export default function Navigation() {
                           <motion.span
                             className={`absolute inset-0 ${
                               isActive('/faaliyetlerimiz')
-                                ? 'bg-blue-500/40'
+                                ? 'bg-green-500/40'
                                 : 'bg-white/0'
                             }`}
                             whileTap={{ scale: 0.98 }}
@@ -437,14 +451,14 @@ export default function Navigation() {
                     onClick={() => setIsKurumsalDropdownOpen(!isKurumsalDropdownOpen)}
                     className={`relative flex items-center gap-2 py-3 px-4 rounded-xl text-sm font-semibold w-full justify-between transition-all overflow-hidden ${
                       isActive('/hakkimizda') || isActive('/referanslar')
-                        ? 'text-slate-900'
+                        ? 'text-gray-900'
                         : 'text-white'
                     }`}
                   >
                     <motion.span
                       className={`absolute inset-0 ${
                         isActive('/hakkimizda') || isActive('/referanslar')
-                          ? 'bg-gradient-to-r from-blue-400 to-cyan-400'
+                          ? 'bg-gradient-to-r from-green-400 to-emerald-400'
                           : 'bg-white/0'
                       }`}
                     />
@@ -477,7 +491,7 @@ export default function Navigation() {
                           <motion.span
                             className={`absolute inset-0 ${
                               isActive('/hakkimizda')
-                                ? 'bg-blue-500/40'
+                                ? 'bg-green-500/40'
                                 : 'bg-white/0'
                             }`}
                             whileTap={{ scale: 0.98 }}
@@ -495,7 +509,7 @@ export default function Navigation() {
                           <motion.span
                             className={`absolute inset-0 ${
                               isActive('/referanslar')
-                                ? 'bg-blue-500/40'
+                                ? 'bg-green-500/40'
                                 : 'bg-white/0'
                             }`}
                             whileTap={{ scale: 0.98 }}
@@ -511,14 +525,14 @@ export default function Navigation() {
                   to="/iletisim"
                   className={`relative py-3 px-4 rounded-xl text-sm font-semibold transition-all overflow-hidden ${
                     isActive('/iletisim')
-                      ? 'text-slate-900'
+                      ? 'text-gray-900'
                       : 'text-white'
                   }`}
                 >
                   <motion.span
                     className={`absolute inset-0 ${
                       isActive('/iletisim')
-                        ? 'bg-gradient-to-r from-blue-400 to-cyan-400'
+                        ? 'bg-gradient-to-r from-green-400 to-emerald-400'
                         : 'bg-white/0'
                     }`}
                     whileTap={{ scale: 0.98 }}
