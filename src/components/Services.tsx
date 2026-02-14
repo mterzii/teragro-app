@@ -51,20 +51,20 @@ export default function Services() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: index * 0.1 }}
         viewport={{ once: true }}
-        className="flex-shrink-0 w-80 md:w-96"
+        className="flex-shrink-0 w-64 sm:w-72 md:w-80"
       >
         <Link
           to={service.link}
-          className="block bg-gradient-to-br from-[#1a4d2e] to-[#2d5a3d] hover:bg-white hover:from-white hover:to-white rounded-2xl p-6 md:p-8 border border-[#1a4d2e] shadow-lg hover:shadow-2xl transition-all duration-100 ease-in-out group"
+          className="block bg-gradient-to-br from-[#1a4d2e] to-[#2d5a3d] hover:bg-white hover:from-white hover:to-white rounded-2xl p-5 md:p-6 border border-[#1a4d2e] shadow-lg hover:shadow-2xl transition-all duration-100 ease-in-out group"
         >
-          <div className="mb-4 w-12 h-12 bg-white group-hover:bg-gradient-to-br group-hover:from-[#1a4d2e] group-hover:to-[#2d5a3d] rounded-xl flex items-center justify-center transition-all duration-150 ease-in-out group-hover:rotate-12">
+          <div className="mb-3 w-10 h-10 md:w-12 md:h-12 bg-white group-hover:bg-gradient-to-br group-hover:from-[#1a4d2e] group-hover:to-[#2d5a3d] rounded-xl flex items-center justify-center transition-all duration-150 ease-in-out group-hover:rotate-12">
 
-            <Icon size={24} className="text-gray-900 group-hover:text-white transition-colors duration-300 ease-in-out" />
+            <Icon size={20} className="md:w-6 md:h-6 text-gray-900 group-hover:text-white transition-colors duration-300 ease-in-out" />
           </div>
-          <h3 className="text-xl md:text-2xl font-bold text-white group-hover:text-gray-900 mb-3 transition-colors duration-300 ease-in-out">
+          <h3 className="text-lg md:text-xl font-bold text-white group-hover:text-gray-900 mb-2 transition-colors duration-300 ease-in-out">
             {service.title}
           </h3>
-          <p className="text-gray-100 group-hover:text-gray-600 leading-relaxed transition-colors duration-300 ease-in-out">
+          <p className="text-sm md:text-base text-gray-100 group-hover:text-gray-600 leading-relaxed transition-colors duration-300 ease-in-out">
             {service.description}
           </p>
         </Link>
