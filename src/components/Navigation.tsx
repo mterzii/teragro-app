@@ -48,13 +48,26 @@ export default function Navigation() {
         <div className="flex items-center justify-between h-20">
           <Link to="/" className="flex items-center group relative">
             <motion.div
-              className="absolute inset-0 bg-green-500/20 rounded-2xl blur-xl"
+              className="absolute -inset-4 bg-gradient-to-r from-green-500/30 via-emerald-400/30 to-green-500/30 rounded-3xl blur-2xl"
               animate={{
-                scale: [1, 1.2, 1],
-                opacity: [0.3, 0.5, 0.3]
+                scale: [1, 1.3, 1],
+                opacity: [0.4, 0.7, 0.4],
+                rotate: [0, 90, 180, 270, 360]
               }}
               transition={{
-                duration: 3,
+                duration: 8,
+                repeat: Infinity,
+                ease: "linear"
+              }}
+            />
+            <motion.div
+              className="absolute -inset-2 bg-green-400/20 rounded-2xl blur-lg"
+              animate={{
+                scale: [1.2, 1, 1.2],
+                opacity: [0.2, 0.5, 0.2]
+              }}
+              transition={{
+                duration: 2,
                 repeat: Infinity,
                 ease: "easeInOut"
               }}
@@ -63,8 +76,30 @@ export default function Navigation() {
               src={Logo}
               alt="TERAGRO Logo"
               className="h-14 w-auto relative z-10 drop-shadow-2xl"
-              whileHover={{ scale: 1.1, rotate: [0, -5, 5, 0] }}
-              transition={{ duration: 0.5 }}
+              initial={{ scale: 0, rotate: -180 }}
+              animate={{
+                scale: 1,
+                rotate: 0,
+                y: [0, -2, 0]
+              }}
+              transition={{
+                scale: { duration: 0.8, ease: "backOut" },
+                rotate: { duration: 0.8, ease: "backOut" },
+                y: {
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }
+              }}
+              whileHover={{
+                scale: 1.15,
+                rotate: [0, -8, 8, -8, 0],
+                filter: "drop-shadow(0 0 20px rgba(34, 197, 94, 0.8))"
+              }}
+              whileTap={{
+                scale: 0.95,
+                rotate: 360
+              }}
             />
           </Link>
 
