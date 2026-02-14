@@ -31,81 +31,109 @@ export default function Navigation() {
 
   return (
     <nav
-      className={`fixed w-full z-50 transition-all duration-300 ${
+      className={`fixed w-full z-50 transition-all duration-500 ${
         isScrolled
-          ? 'bg-white/80 backdrop-blur-xl shadow-lg border-b border-gray-200/50'
-          : 'bg-white/60 backdrop-blur-md'
+          ? 'bg-gradient-to-r from-emerald-600 via-green-600 to-teal-600 shadow-2xl shadow-emerald-500/20'
+          : 'bg-gradient-to-r from-emerald-500/95 via-green-500/95 to-teal-500/95 backdrop-blur-md'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <div className="flex items-center justify-between h-20">
-          <Link to="/" className="flex items-center group">
+          <Link to="/" className="flex items-center group relative">
+            <div className="absolute inset-0 bg-white/20 rounded-2xl blur-xl group-hover:bg-white/30 transition-all duration-300" />
             <img
               src={Logo}
               alt="TERAGRO Logo"
-              className="h-14 w-auto filter brightness-0 group-hover:brightness-100 transition-all duration-300"
+              className="h-14 w-auto relative z-10 drop-shadow-2xl group-hover:scale-110 transition-transform duration-300"
             />
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden lg:flex items-center gap-1">
+          <div className="hidden lg:flex items-center gap-2">
             <Link
               to="/"
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+              className={`relative px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 overflow-hidden group ${
                 isActive('/')
-                  ? 'bg-[#1a4d2e] text-white shadow-md'
-                  : 'text-gray-700 hover:bg-gray-100'
+                  ? 'text-emerald-600 shadow-lg'
+                  : 'text-white hover:text-white'
               }`}
             >
-              Anasayfa
+              <span className={`absolute inset-0 transition-all duration-300 ${
+                isActive('/')
+                  ? 'bg-white'
+                  : 'bg-white/0 group-hover:bg-white/20'
+              }`} />
+              <span className="relative z-10">Anasayfa</span>
             </Link>
 
             <div className="relative group">
               <button
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center gap-1 ${
+                className={`relative px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 overflow-hidden flex items-center gap-2 ${
                   isActive('/zirai-ilac') || isActive('/damla-sulama') || isActive('/faaliyetlerimiz')
-                    ? 'bg-[#1a4d2e] text-white shadow-md'
-                    : 'text-gray-700 hover:bg-gray-100'
+                    ? 'text-emerald-600 shadow-lg'
+                    : 'text-white hover:text-white'
                 }`}
               >
-                Hizmetlerimiz
-                <ChevronDown size={16} className="group-hover:rotate-180 transition-transform duration-200" />
+                <span className={`absolute inset-0 transition-all duration-300 ${
+                  isActive('/zirai-ilac') || isActive('/damla-sulama') || isActive('/faaliyetlerimiz')
+                    ? 'bg-white'
+                    : 'bg-white/0 group-hover:bg-white/20'
+                }`} />
+                <span className="relative z-10 flex items-center gap-2">
+                  Hizmetlerimiz
+                  <ChevronDown size={16} className="group-hover:rotate-180 transition-transform duration-300" />
+                </span>
               </button>
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 whileHover={{ opacity: 1, y: 0 }}
-                className="absolute left-0 top-full mt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"
+                className="absolute left-0 top-full mt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300"
               >
-                <div className="bg-white/95 backdrop-blur-xl rounded-xl shadow-xl py-2 w-56 border border-gray-200/50">
+                <div className="bg-white rounded-2xl shadow-2xl py-3 w-60 border border-emerald-100">
                   <Link
                     to="/zirai-ilac"
-                    className={`block px-4 py-2.5 text-sm font-medium transition-all ${
+                    className={`relative block px-4 py-3 text-sm font-medium transition-all overflow-hidden group/item ${
                       isActive('/zirai-ilac')
-                        ? 'bg-[#1a4d2e] text-white mx-2 rounded-lg'
-                        : 'text-gray-700 hover:bg-gray-50 hover:text-[#1a4d2e]'
+                        ? 'text-white'
+                        : 'text-gray-700'
                     }`}
                   >
-                    Zirai İlaç
+                    <span className={`absolute inset-0 transition-all duration-300 ${
+                      isActive('/zirai-ilac')
+                        ? 'bg-gradient-to-r from-emerald-500 to-green-500'
+                        : 'bg-gradient-to-r from-emerald-50 to-green-50 opacity-0 group-hover/item:opacity-100'
+                    }`} />
+                    <span className="relative z-10">Zirai İlaç</span>
                   </Link>
                   <Link
                     to="/damla-sulama"
-                    className={`block px-4 py-2.5 text-sm font-medium transition-all ${
+                    className={`relative block px-4 py-3 text-sm font-medium transition-all overflow-hidden group/item ${
                       isActive('/damla-sulama')
-                        ? 'bg-[#1a4d2e] text-white mx-2 rounded-lg'
-                        : 'text-gray-700 hover:bg-gray-50 hover:text-[#1a4d2e]'
+                        ? 'text-white'
+                        : 'text-gray-700'
                     }`}
                   >
-                    Damla Sulama
+                    <span className={`absolute inset-0 transition-all duration-300 ${
+                      isActive('/damla-sulama')
+                        ? 'bg-gradient-to-r from-emerald-500 to-green-500'
+                        : 'bg-gradient-to-r from-emerald-50 to-green-50 opacity-0 group-hover/item:opacity-100'
+                    }`} />
+                    <span className="relative z-10">Damla Sulama</span>
                   </Link>
                   <Link
                     to="/faaliyetlerimiz"
-                    className={`block px-4 py-2.5 text-sm font-medium transition-all ${
+                    className={`relative block px-4 py-3 text-sm font-medium transition-all overflow-hidden group/item ${
                       isActive('/faaliyetlerimiz')
-                        ? 'bg-[#1a4d2e] text-white mx-2 rounded-lg'
-                        : 'text-gray-700 hover:bg-gray-50 hover:text-[#1a4d2e]'
+                        ? 'text-white'
+                        : 'text-gray-700'
                     }`}
                   >
-                    Faaliyetlerimiz
+                    <span className={`absolute inset-0 transition-all duration-300 ${
+                      isActive('/faaliyetlerimiz')
+                        ? 'bg-gradient-to-r from-emerald-500 to-green-500'
+                        : 'bg-gradient-to-r from-emerald-50 to-green-50 opacity-0 group-hover/item:opacity-100'
+                    }`} />
+                    <span className="relative z-10">Faaliyetlerimiz</span>
                   </Link>
                 </div>
               </motion.div>
@@ -113,40 +141,57 @@ export default function Navigation() {
 
             <div className="relative group">
               <button
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center gap-1 ${
+                className={`relative px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 overflow-hidden flex items-center gap-2 ${
                   isActive('/hakkimizda') || isActive('/referanslar')
-                    ? 'bg-[#1a4d2e] text-white shadow-md'
-                    : 'text-gray-700 hover:bg-gray-100'
+                    ? 'text-emerald-600 shadow-lg'
+                    : 'text-white hover:text-white'
                 }`}
               >
-                Kurumsal
-                <ChevronDown size={16} className="group-hover:rotate-180 transition-transform duration-200" />
+                <span className={`absolute inset-0 transition-all duration-300 ${
+                  isActive('/hakkimizda') || isActive('/referanslar')
+                    ? 'bg-white'
+                    : 'bg-white/0 group-hover:bg-white/20'
+                }`} />
+                <span className="relative z-10 flex items-center gap-2">
+                  Kurumsal
+                  <ChevronDown size={16} className="group-hover:rotate-180 transition-transform duration-300" />
+                </span>
               </button>
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 whileHover={{ opacity: 1, y: 0 }}
-                className="absolute left-0 top-full mt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"
+                className="absolute left-0 top-full mt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300"
               >
-                <div className="bg-white/95 backdrop-blur-xl rounded-xl shadow-xl py-2 w-56 border border-gray-200/50">
+                <div className="bg-white rounded-2xl shadow-2xl py-3 w-60 border border-emerald-100">
                   <Link
                     to="/hakkimizda"
-                    className={`block px-4 py-2.5 text-sm font-medium transition-all ${
+                    className={`relative block px-4 py-3 text-sm font-medium transition-all overflow-hidden group/item ${
                       isActive('/hakkimizda')
-                        ? 'bg-[#1a4d2e] text-white mx-2 rounded-lg'
-                        : 'text-gray-700 hover:bg-gray-50 hover:text-[#1a4d2e]'
+                        ? 'text-white'
+                        : 'text-gray-700'
                     }`}
                   >
-                    Hakkımızda
+                    <span className={`absolute inset-0 transition-all duration-300 ${
+                      isActive('/hakkimizda')
+                        ? 'bg-gradient-to-r from-emerald-500 to-green-500'
+                        : 'bg-gradient-to-r from-emerald-50 to-green-50 opacity-0 group-hover/item:opacity-100'
+                    }`} />
+                    <span className="relative z-10">Hakkımızda</span>
                   </Link>
                   <Link
                     to="/referanslar"
-                    className={`block px-4 py-2.5 text-sm font-medium transition-all ${
+                    className={`relative block px-4 py-3 text-sm font-medium transition-all overflow-hidden group/item ${
                       isActive('/referanslar')
-                        ? 'bg-[#1a4d2e] text-white mx-2 rounded-lg'
-                        : 'text-gray-700 hover:bg-gray-50 hover:text-[#1a4d2e]'
+                        ? 'text-white'
+                        : 'text-gray-700'
                     }`}
                   >
-                    Referanslar
+                    <span className={`absolute inset-0 transition-all duration-300 ${
+                      isActive('/referanslar')
+                        ? 'bg-gradient-to-r from-emerald-500 to-green-500'
+                        : 'bg-gradient-to-r from-emerald-50 to-green-50 opacity-0 group-hover/item:opacity-100'
+                    }`} />
+                    <span className="relative z-10">Referanslar</span>
                   </Link>
                 </div>
               </motion.div>
@@ -154,20 +199,25 @@ export default function Navigation() {
 
             <Link
               to="/iletisim"
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+              className={`relative px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 overflow-hidden group ${
                 isActive('/iletisim')
-                  ? 'bg-[#1a4d2e] text-white shadow-md'
-                  : 'text-gray-700 hover:bg-gray-100'
+                  ? 'text-emerald-600 shadow-lg'
+                  : 'text-white hover:text-white'
               }`}
             >
-              İletişim
+              <span className={`absolute inset-0 transition-all duration-300 ${
+                isActive('/iletisim')
+                  ? 'bg-white'
+                  : 'bg-white/0 group-hover:bg-white/20'
+              }`} />
+              <span className="relative z-10">İletişim</span>
             </Link>
           </div>
 
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden text-gray-700 hover:text-[#1a4d2e] p-2 transition-colors"
+            className="lg:hidden text-white hover:bg-white/20 p-2 rounded-lg transition-all duration-300"
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -180,36 +230,48 @@ export default function Navigation() {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="lg:hidden bg-white/95 backdrop-blur-xl border-t border-gray-200/50"
+              className="lg:hidden bg-gradient-to-br from-emerald-600 via-green-600 to-teal-600 border-t border-white/20"
             >
-              <div className="flex flex-col gap-2 px-4 py-4">
+              <div className="flex flex-col gap-2 px-4 py-6">
                 <Link
                   to="/"
-                  className={`py-2.5 px-3 rounded-lg text-sm font-medium transition-all ${
+                  className={`relative py-3 px-4 rounded-xl text-sm font-semibold transition-all overflow-hidden ${
                     isActive('/')
-                      ? 'bg-[#1a4d2e] text-white'
-                      : 'text-gray-700 hover:bg-gray-50'
+                      ? 'text-emerald-600'
+                      : 'text-white'
                   }`}
                 >
-                  Anasayfa
+                  <span className={`absolute inset-0 transition-all duration-300 ${
+                    isActive('/')
+                      ? 'bg-white'
+                      : 'bg-white/0 hover:bg-white/20'
+                  }`} />
+                  <span className="relative z-10">Anasayfa</span>
                 </Link>
 
                 <div>
                   <button
                     onClick={() => setIsHizmetlerDropdownOpen(!isHizmetlerDropdownOpen)}
-                    className={`flex items-center gap-2 py-2.5 px-3 rounded-lg text-sm font-medium w-full justify-between transition-all ${
+                    className={`relative flex items-center gap-2 py-3 px-4 rounded-xl text-sm font-semibold w-full justify-between transition-all overflow-hidden ${
                       isActive('/zirai-ilac') || isActive('/damla-sulama') || isActive('/faaliyetlerimiz')
-                        ? 'bg-[#1a4d2e] text-white'
-                        : 'text-gray-700 hover:bg-gray-50'
+                        ? 'text-emerald-600'
+                        : 'text-white'
                     }`}
                   >
-                    Hizmetlerimiz
-                    <ChevronDown
-                      size={16}
-                      className={`transition-transform ${
-                        isHizmetlerDropdownOpen ? 'rotate-180' : ''
-                      }`}
-                    />
+                    <span className={`absolute inset-0 transition-all duration-300 ${
+                      isActive('/zirai-ilac') || isActive('/damla-sulama') || isActive('/faaliyetlerimiz')
+                        ? 'bg-white'
+                        : 'bg-white/0'
+                    }`} />
+                    <span className="relative z-10 flex items-center justify-between w-full">
+                      Hizmetlerimiz
+                      <ChevronDown
+                        size={16}
+                        className={`transition-transform ${
+                          isHizmetlerDropdownOpen ? 'rotate-180' : ''
+                        }`}
+                      />
+                    </span>
                   </button>
                   <AnimatePresence>
                     {isHizmetlerDropdownOpen && (
@@ -221,33 +283,48 @@ export default function Navigation() {
                       >
                         <Link
                           to="/zirai-ilac"
-                          className={`py-2 px-3 rounded-lg text-sm transition-all ${
+                          className={`relative py-2.5 px-4 rounded-lg text-sm font-medium transition-all overflow-hidden ${
                             isActive('/zirai-ilac')
-                              ? 'bg-gray-100 text-[#1a4d2e] font-medium'
-                              : 'text-gray-600 hover:bg-gray-50 hover:text-[#1a4d2e]'
+                              ? 'text-white'
+                              : 'text-white/80'
                           }`}
                         >
-                          Zirai İlaç
+                          <span className={`absolute inset-0 transition-all duration-300 ${
+                            isActive('/zirai-ilac')
+                              ? 'bg-white/30'
+                              : 'bg-white/0 hover:bg-white/10'
+                          }`} />
+                          <span className="relative z-10">Zirai İlaç</span>
                         </Link>
                         <Link
                           to="/damla-sulama"
-                          className={`py-2 px-3 rounded-lg text-sm transition-all ${
+                          className={`relative py-2.5 px-4 rounded-lg text-sm font-medium transition-all overflow-hidden ${
                             isActive('/damla-sulama')
-                              ? 'bg-gray-100 text-[#1a4d2e] font-medium'
-                              : 'text-gray-600 hover:bg-gray-50 hover:text-[#1a4d2e]'
+                              ? 'text-white'
+                              : 'text-white/80'
                           }`}
                         >
-                          Damla Sulama
+                          <span className={`absolute inset-0 transition-all duration-300 ${
+                            isActive('/damla-sulama')
+                              ? 'bg-white/30'
+                              : 'bg-white/0 hover:bg-white/10'
+                          }`} />
+                          <span className="relative z-10">Damla Sulama</span>
                         </Link>
                         <Link
                           to="/faaliyetlerimiz"
-                          className={`py-2 px-3 rounded-lg text-sm transition-all ${
+                          className={`relative py-2.5 px-4 rounded-lg text-sm font-medium transition-all overflow-hidden ${
                             isActive('/faaliyetlerimiz')
-                              ? 'bg-gray-100 text-[#1a4d2e] font-medium'
-                              : 'text-gray-600 hover:bg-gray-50 hover:text-[#1a4d2e]'
+                              ? 'text-white'
+                              : 'text-white/80'
                           }`}
                         >
-                          Faaliyetlerimiz
+                          <span className={`absolute inset-0 transition-all duration-300 ${
+                            isActive('/faaliyetlerimiz')
+                              ? 'bg-white/30'
+                              : 'bg-white/0 hover:bg-white/10'
+                          }`} />
+                          <span className="relative z-10">Faaliyetlerimiz</span>
                         </Link>
                       </motion.div>
                     )}
@@ -257,19 +334,26 @@ export default function Navigation() {
                 <div>
                   <button
                     onClick={() => setIsKurumsalDropdownOpen(!isKurumsalDropdownOpen)}
-                    className={`flex items-center gap-2 py-2.5 px-3 rounded-lg text-sm font-medium w-full justify-between transition-all ${
+                    className={`relative flex items-center gap-2 py-3 px-4 rounded-xl text-sm font-semibold w-full justify-between transition-all overflow-hidden ${
                       isActive('/hakkimizda') || isActive('/referanslar')
-                        ? 'bg-[#1a4d2e] text-white'
-                        : 'text-gray-700 hover:bg-gray-50'
+                        ? 'text-emerald-600'
+                        : 'text-white'
                     }`}
                   >
-                    Kurumsal
-                    <ChevronDown
-                      size={16}
-                      className={`transition-transform ${
-                        isKurumsalDropdownOpen ? 'rotate-180' : ''
-                      }`}
-                    />
+                    <span className={`absolute inset-0 transition-all duration-300 ${
+                      isActive('/hakkimizda') || isActive('/referanslar')
+                        ? 'bg-white'
+                        : 'bg-white/0'
+                    }`} />
+                    <span className="relative z-10 flex items-center justify-between w-full">
+                      Kurumsal
+                      <ChevronDown
+                        size={16}
+                        className={`transition-transform ${
+                          isKurumsalDropdownOpen ? 'rotate-180' : ''
+                        }`}
+                      />
+                    </span>
                   </button>
                   <AnimatePresence>
                     {isKurumsalDropdownOpen && (
@@ -281,23 +365,33 @@ export default function Navigation() {
                       >
                         <Link
                           to="/hakkimizda"
-                          className={`py-2 px-3 rounded-lg text-sm transition-all ${
+                          className={`relative py-2.5 px-4 rounded-lg text-sm font-medium transition-all overflow-hidden ${
                             isActive('/hakkimizda')
-                              ? 'bg-gray-100 text-[#1a4d2e] font-medium'
-                              : 'text-gray-600 hover:bg-gray-50 hover:text-[#1a4d2e]'
+                              ? 'text-white'
+                              : 'text-white/80'
                           }`}
                         >
-                          Hakkımızda
+                          <span className={`absolute inset-0 transition-all duration-300 ${
+                            isActive('/hakkimizda')
+                              ? 'bg-white/30'
+                              : 'bg-white/0 hover:bg-white/10'
+                          }`} />
+                          <span className="relative z-10">Hakkımızda</span>
                         </Link>
                         <Link
                           to="/referanslar"
-                          className={`py-2 px-3 rounded-lg text-sm transition-all ${
+                          className={`relative py-2.5 px-4 rounded-lg text-sm font-medium transition-all overflow-hidden ${
                             isActive('/referanslar')
-                              ? 'bg-gray-100 text-[#1a4d2e] font-medium'
-                              : 'text-gray-600 hover:bg-gray-50 hover:text-[#1a4d2e]'
+                              ? 'text-white'
+                              : 'text-white/80'
                           }`}
                         >
-                          Referanslar
+                          <span className={`absolute inset-0 transition-all duration-300 ${
+                            isActive('/referanslar')
+                              ? 'bg-white/30'
+                              : 'bg-white/0 hover:bg-white/10'
+                          }`} />
+                          <span className="relative z-10">Referanslar</span>
                         </Link>
                       </motion.div>
                     )}
@@ -306,13 +400,18 @@ export default function Navigation() {
 
                 <Link
                   to="/iletisim"
-                  className={`py-2.5 px-3 rounded-lg text-sm font-medium transition-all ${
+                  className={`relative py-3 px-4 rounded-xl text-sm font-semibold transition-all overflow-hidden ${
                     isActive('/iletisim')
-                      ? 'bg-[#1a4d2e] text-white'
-                      : 'text-gray-700 hover:bg-gray-50'
+                      ? 'text-emerald-600'
+                      : 'text-white'
                   }`}
                 >
-                  İletişim
+                  <span className={`absolute inset-0 transition-all duration-300 ${
+                    isActive('/iletisim')
+                      ? 'bg-white'
+                      : 'bg-white/0 hover:bg-white/20'
+                  }`} />
+                  <span className="relative z-10">İletişim</span>
                 </Link>
               </div>
             </motion.div>
