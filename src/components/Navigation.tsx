@@ -31,31 +31,30 @@ export default function Navigation() {
 
   return (
     <nav
-      className={`fixed w-full z-50 transition-all duration-500 ${
+      className={`fixed w-full z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-gradient-to-r from-[#1a4d2e] via-[#2d5a3d] to-[#1a4d2e] shadow-2xl'
-          : 'bg-gradient-to-r from-[#1a4d2e]/90 via-[#2d5a3d]/85 to-[#1a4d2e]/90 backdrop-blur-sm'
+          ? 'bg-white/80 backdrop-blur-xl shadow-lg border-b border-gray-200/50'
+          : 'bg-white/60 backdrop-blur-md'
       }`}
-      style={{
-        backgroundImage: isScrolled
-          ? 'linear-gradient(135deg, #1a4d2e 0%, #2d5a3d 50%, #1a4d2e 100%)'
-          : 'linear-gradient(135deg, rgba(26, 77, 46, 0.9) 0%, rgba(45, 90, 61, 0.85) 50%, rgba(26, 77, 46, 0.9) 100%)'
-      }}
     >
       <div className="max-w-7xl mx-auto px-4 md:px-8">
-        <div className="flex items-center justify-between h-16 md:h-20">
-          <Link to="/" className="flex items-center transform hover:scale-105 transition-transform duration-300">
-            <img src={Logo} alt="TERAGRO Logo" className="h-12 md:h-14 w-auto drop-shadow-lg" />
+        <div className="flex items-center justify-between h-20">
+          <Link to="/" className="flex items-center group">
+            <img
+              src={Logo}
+              alt="TERAGRO Logo"
+              className="h-14 w-auto filter brightness-0 group-hover:brightness-100 transition-all duration-300"
+            />
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden lg:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-1">
             <Link
               to="/"
-              className={`transition-all font-semibold text-base tracking-wide ${
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                 isActive('/')
-                  ? 'text-yellow-300 scale-105'
-                  : 'text-white/90 hover:text-yellow-300 hover:scale-105'
+                  ? 'bg-[#1a4d2e] text-white shadow-md'
+                  : 'text-gray-700 hover:bg-gray-100'
               }`}
             >
               Anasayfa
@@ -63,47 +62,47 @@ export default function Navigation() {
 
             <div className="relative group">
               <button
-                className={`flex items-center gap-2 transition-all font-semibold text-base tracking-wide ${
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center gap-1 ${
                   isActive('/zirai-ilac') || isActive('/damla-sulama') || isActive('/faaliyetlerimiz')
-                    ? 'text-yellow-300 scale-105'
-                    : 'text-white/90 hover:text-yellow-300 hover:scale-105'
+                    ? 'bg-[#1a4d2e] text-white shadow-md'
+                    : 'text-gray-700 hover:bg-gray-100'
                 }`}
               >
                 Hizmetlerimiz
-                <ChevronDown size={18} className="group-hover:rotate-180 transition-transform duration-300" />
+                <ChevronDown size={16} className="group-hover:rotate-180 transition-transform duration-200" />
               </button>
               <motion.div
-                initial={{ opacity: 0, y: -10 }}
+                initial={{ opacity: 0, y: 10 }}
                 whileHover={{ opacity: 1, y: 0 }}
-                className="absolute left-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300"
+                className="absolute left-0 top-full mt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"
               >
-                <div className="bg-gradient-to-br from-[#1a4d2e] to-[#2d5a3d] rounded-xl shadow-2xl py-2 w-52 border border-yellow-300/20">
+                <div className="bg-white/95 backdrop-blur-xl rounded-xl shadow-xl py-2 w-56 border border-gray-200/50">
                   <Link
                     to="/zirai-ilac"
-                    className={`block px-5 py-3 transition-all font-medium ${
+                    className={`block px-4 py-2.5 text-sm font-medium transition-all ${
                       isActive('/zirai-ilac')
-                        ? 'bg-yellow-300/20 text-yellow-300 border-l-4 border-yellow-300'
-                        : 'text-white/90 hover:bg-white/10 hover:text-yellow-300 hover:border-l-4 hover:border-yellow-300/50'
+                        ? 'bg-[#1a4d2e] text-white mx-2 rounded-lg'
+                        : 'text-gray-700 hover:bg-gray-50 hover:text-[#1a4d2e]'
                     }`}
                   >
                     Zirai İlaç
                   </Link>
                   <Link
                     to="/damla-sulama"
-                    className={`block px-5 py-3 transition-all font-medium ${
+                    className={`block px-4 py-2.5 text-sm font-medium transition-all ${
                       isActive('/damla-sulama')
-                        ? 'bg-yellow-300/20 text-yellow-300 border-l-4 border-yellow-300'
-                        : 'text-white/90 hover:bg-white/10 hover:text-yellow-300 hover:border-l-4 hover:border-yellow-300/50'
+                        ? 'bg-[#1a4d2e] text-white mx-2 rounded-lg'
+                        : 'text-gray-700 hover:bg-gray-50 hover:text-[#1a4d2e]'
                     }`}
                   >
                     Damla Sulama
                   </Link>
                   <Link
                     to="/faaliyetlerimiz"
-                    className={`block px-5 py-3 transition-all font-medium ${
+                    className={`block px-4 py-2.5 text-sm font-medium transition-all ${
                       isActive('/faaliyetlerimiz')
-                        ? 'bg-yellow-300/20 text-yellow-300 border-l-4 border-yellow-300'
-                        : 'text-white/90 hover:bg-white/10 hover:text-yellow-300 hover:border-l-4 hover:border-yellow-300/50'
+                        ? 'bg-[#1a4d2e] text-white mx-2 rounded-lg'
+                        : 'text-gray-700 hover:bg-gray-50 hover:text-[#1a4d2e]'
                     }`}
                   >
                     Faaliyetlerimiz
@@ -114,37 +113,37 @@ export default function Navigation() {
 
             <div className="relative group">
               <button
-                className={`flex items-center gap-2 transition-all font-semibold text-base tracking-wide ${
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center gap-1 ${
                   isActive('/hakkimizda') || isActive('/referanslar')
-                    ? 'text-yellow-300 scale-105'
-                    : 'text-white/90 hover:text-yellow-300 hover:scale-105'
+                    ? 'bg-[#1a4d2e] text-white shadow-md'
+                    : 'text-gray-700 hover:bg-gray-100'
                 }`}
               >
                 Kurumsal
-                <ChevronDown size={18} className="group-hover:rotate-180 transition-transform duration-300" />
+                <ChevronDown size={16} className="group-hover:rotate-180 transition-transform duration-200" />
               </button>
               <motion.div
-                initial={{ opacity: 0, y: -10 }}
+                initial={{ opacity: 0, y: 10 }}
                 whileHover={{ opacity: 1, y: 0 }}
-                className="absolute left-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300"
+                className="absolute left-0 top-full mt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"
               >
-                <div className="bg-gradient-to-br from-[#1a4d2e] to-[#2d5a3d] rounded-xl shadow-2xl py-2 w-52 border border-yellow-300/20">
+                <div className="bg-white/95 backdrop-blur-xl rounded-xl shadow-xl py-2 w-56 border border-gray-200/50">
                   <Link
                     to="/hakkimizda"
-                    className={`block px-5 py-3 transition-all font-medium ${
+                    className={`block px-4 py-2.5 text-sm font-medium transition-all ${
                       isActive('/hakkimizda')
-                        ? 'bg-yellow-300/20 text-yellow-300 border-l-4 border-yellow-300'
-                        : 'text-white/90 hover:bg-white/10 hover:text-yellow-300 hover:border-l-4 hover:border-yellow-300/50'
+                        ? 'bg-[#1a4d2e] text-white mx-2 rounded-lg'
+                        : 'text-gray-700 hover:bg-gray-50 hover:text-[#1a4d2e]'
                     }`}
                   >
                     Hakkımızda
                   </Link>
                   <Link
                     to="/referanslar"
-                    className={`block px-5 py-3 transition-all font-medium ${
+                    className={`block px-4 py-2.5 text-sm font-medium transition-all ${
                       isActive('/referanslar')
-                        ? 'bg-yellow-300/20 text-yellow-300 border-l-4 border-yellow-300'
-                        : 'text-white/90 hover:bg-white/10 hover:text-yellow-300 hover:border-l-4 hover:border-yellow-300/50'
+                        ? 'bg-[#1a4d2e] text-white mx-2 rounded-lg'
+                        : 'text-gray-700 hover:bg-gray-50 hover:text-[#1a4d2e]'
                     }`}
                   >
                     Referanslar
@@ -155,10 +154,10 @@ export default function Navigation() {
 
             <Link
               to="/iletisim"
-              className={`transition-all font-semibold text-base tracking-wide ${
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                 isActive('/iletisim')
-                  ? 'text-yellow-300 scale-105'
-                  : 'text-white/90 hover:text-yellow-300 hover:scale-105'
+                  ? 'bg-[#1a4d2e] text-white shadow-md'
+                  : 'text-gray-700 hover:bg-gray-100'
               }`}
             >
               İletişim
@@ -168,9 +167,9 @@ export default function Navigation() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden text-white hover:text-yellow-300 p-2 transition-colors duration-300"
+            className="lg:hidden text-gray-700 hover:text-[#1a4d2e] p-2 transition-colors"
           >
-            {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
 
@@ -181,15 +180,15 @@ export default function Navigation() {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="lg:hidden bg-gradient-to-br from-[#1a4d2e] to-[#2d5a3d] border-t border-yellow-300/20"
+              className="lg:hidden bg-white/95 backdrop-blur-xl border-t border-gray-200/50"
             >
-              <div className="flex flex-col gap-4 px-4 py-6">
+              <div className="flex flex-col gap-2 px-4 py-4">
                 <Link
                   to="/"
-                  className={`py-2 font-semibold transition-all ${
+                  className={`py-2.5 px-3 rounded-lg text-sm font-medium transition-all ${
                     isActive('/')
-                      ? 'text-yellow-300 pl-2 border-l-4 border-yellow-300'
-                      : 'text-white/90 hover:text-yellow-300 hover:pl-2'
+                      ? 'bg-[#1a4d2e] text-white'
+                      : 'text-gray-700 hover:bg-gray-50'
                   }`}
                 >
                   Anasayfa
@@ -198,15 +197,15 @@ export default function Navigation() {
                 <div>
                   <button
                     onClick={() => setIsHizmetlerDropdownOpen(!isHizmetlerDropdownOpen)}
-                    className={`flex items-center gap-2 py-2 font-semibold w-full justify-between transition-all ${
+                    className={`flex items-center gap-2 py-2.5 px-3 rounded-lg text-sm font-medium w-full justify-between transition-all ${
                       isActive('/zirai-ilac') || isActive('/damla-sulama') || isActive('/faaliyetlerimiz')
-                        ? 'text-yellow-300 pl-2 border-l-4 border-yellow-300'
-                        : 'text-white/90 hover:text-yellow-300'
+                        ? 'bg-[#1a4d2e] text-white'
+                        : 'text-gray-700 hover:bg-gray-50'
                     }`}
                   >
                     Hizmetlerimiz
                     <ChevronDown
-                      size={18}
+                      size={16}
                       className={`transition-transform ${
                         isHizmetlerDropdownOpen ? 'rotate-180' : ''
                       }`}
@@ -218,34 +217,34 @@ export default function Navigation() {
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: 'auto' }}
                         exit={{ opacity: 0, height: 0 }}
-                        className="flex flex-col gap-2 mt-2 ml-4 pl-4 border-l-2 border-white/20"
+                        className="flex flex-col gap-1 mt-2 ml-4"
                       >
                         <Link
                           to="/zirai-ilac"
-                          className={`py-2 transition-all ${
+                          className={`py-2 px-3 rounded-lg text-sm transition-all ${
                             isActive('/zirai-ilac')
-                              ? 'text-yellow-300 font-semibold'
-                              : 'text-white/80 hover:text-yellow-300'
+                              ? 'bg-gray-100 text-[#1a4d2e] font-medium'
+                              : 'text-gray-600 hover:bg-gray-50 hover:text-[#1a4d2e]'
                           }`}
                         >
                           Zirai İlaç
                         </Link>
                         <Link
                           to="/damla-sulama"
-                          className={`py-2 transition-all ${
+                          className={`py-2 px-3 rounded-lg text-sm transition-all ${
                             isActive('/damla-sulama')
-                              ? 'text-yellow-300 font-semibold'
-                              : 'text-white/80 hover:text-yellow-300'
+                              ? 'bg-gray-100 text-[#1a4d2e] font-medium'
+                              : 'text-gray-600 hover:bg-gray-50 hover:text-[#1a4d2e]'
                           }`}
                         >
                           Damla Sulama
                         </Link>
                         <Link
                           to="/faaliyetlerimiz"
-                          className={`py-2 transition-all ${
+                          className={`py-2 px-3 rounded-lg text-sm transition-all ${
                             isActive('/faaliyetlerimiz')
-                              ? 'text-yellow-300 font-semibold'
-                              : 'text-white/80 hover:text-yellow-300'
+                              ? 'bg-gray-100 text-[#1a4d2e] font-medium'
+                              : 'text-gray-600 hover:bg-gray-50 hover:text-[#1a4d2e]'
                           }`}
                         >
                           Faaliyetlerimiz
@@ -258,15 +257,15 @@ export default function Navigation() {
                 <div>
                   <button
                     onClick={() => setIsKurumsalDropdownOpen(!isKurumsalDropdownOpen)}
-                    className={`flex items-center gap-2 py-2 font-semibold w-full justify-between transition-all ${
+                    className={`flex items-center gap-2 py-2.5 px-3 rounded-lg text-sm font-medium w-full justify-between transition-all ${
                       isActive('/hakkimizda') || isActive('/referanslar')
-                        ? 'text-yellow-300 pl-2 border-l-4 border-yellow-300'
-                        : 'text-white/90 hover:text-yellow-300'
+                        ? 'bg-[#1a4d2e] text-white'
+                        : 'text-gray-700 hover:bg-gray-50'
                     }`}
                   >
                     Kurumsal
                     <ChevronDown
-                      size={18}
+                      size={16}
                       className={`transition-transform ${
                         isKurumsalDropdownOpen ? 'rotate-180' : ''
                       }`}
@@ -278,24 +277,24 @@ export default function Navigation() {
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: 'auto' }}
                         exit={{ opacity: 0, height: 0 }}
-                        className="flex flex-col gap-2 mt-2 ml-4 pl-4 border-l-2 border-white/20"
+                        className="flex flex-col gap-1 mt-2 ml-4"
                       >
                         <Link
                           to="/hakkimizda"
-                          className={`py-2 transition-all ${
+                          className={`py-2 px-3 rounded-lg text-sm transition-all ${
                             isActive('/hakkimizda')
-                              ? 'text-yellow-300 font-semibold'
-                              : 'text-white/80 hover:text-yellow-300'
+                              ? 'bg-gray-100 text-[#1a4d2e] font-medium'
+                              : 'text-gray-600 hover:bg-gray-50 hover:text-[#1a4d2e]'
                           }`}
                         >
                           Hakkımızda
                         </Link>
                         <Link
                           to="/referanslar"
-                          className={`py-2 transition-all ${
+                          className={`py-2 px-3 rounded-lg text-sm transition-all ${
                             isActive('/referanslar')
-                              ? 'text-yellow-300 font-semibold'
-                              : 'text-white/80 hover:text-yellow-300'
+                              ? 'bg-gray-100 text-[#1a4d2e] font-medium'
+                              : 'text-gray-600 hover:bg-gray-50 hover:text-[#1a4d2e]'
                           }`}
                         >
                           Referanslar
@@ -307,10 +306,10 @@ export default function Navigation() {
 
                 <Link
                   to="/iletisim"
-                  className={`py-2 font-semibold transition-all ${
+                  className={`py-2.5 px-3 rounded-lg text-sm font-medium transition-all ${
                     isActive('/iletisim')
-                      ? 'text-yellow-300 pl-2 border-l-4 border-yellow-300'
-                      : 'text-white/90 hover:text-yellow-300 hover:pl-2'
+                      ? 'bg-[#1a4d2e] text-white'
+                      : 'text-gray-700 hover:bg-gray-50'
                   }`}
                 >
                   İletişim
