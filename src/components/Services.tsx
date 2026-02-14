@@ -46,22 +46,29 @@ export default function Services() {
     const Icon = service.icon;
 
     return (
-      <div className="flex-shrink-0 w-[340px]">
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: index * 0.1 }}
+        viewport={{ once: true }}
+        className="flex-shrink-0 w-80 md:w-96"
+      >
         <Link
           to={service.link}
-          className="block bg-gradient-to-br from-[#1a4d2e] to-[#2d5a3d] hover:bg-white hover:from-white hover:to-white rounded-2xl p-6 md:p-8 border border-[#1a4d2e] shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out group h-full"
+          className="block bg-gradient-to-br from-[#1a4d2e] to-[#2d5a3d] hover:bg-white hover:from-white hover:to-white rounded-2xl p-6 md:p-8 border border-[#1a4d2e] shadow-lg hover:shadow-2xl transition-all duration-100 ease-in-out group"
         >
-          <div className="mb-4 w-12 h-12 bg-white group-hover:bg-gradient-to-br group-hover:from-[#1a4d2e] group-hover:to-[#2d5a3d] rounded-xl flex items-center justify-center transition-all duration-300 ease-in-out group-hover:rotate-12">
+          <div className="mb-4 w-12 h-12 bg-white group-hover:bg-gradient-to-br group-hover:from-[#1a4d2e] group-hover:to-[#2d5a3d] rounded-xl flex items-center justify-center transition-all duration-150 ease-in-out group-hover:rotate-12">
+
             <Icon size={24} className="text-gray-900 group-hover:text-white transition-colors duration-300 ease-in-out" />
           </div>
           <h3 className="text-xl md:text-2xl font-bold text-white group-hover:text-gray-900 mb-3 transition-colors duration-300 ease-in-out">
             {service.title}
           </h3>
-          <p className="text-sm md:text-base text-gray-100 group-hover:text-gray-600 leading-relaxed transition-colors duration-300 ease-in-out">
+          <p className="text-gray-100 group-hover:text-gray-600 leading-relaxed transition-colors duration-300 ease-in-out">
             {service.description}
           </p>
         </Link>
-      </div>
+      </motion.div>
     );
   };
 
@@ -83,23 +90,21 @@ export default function Services() {
       </div>
 
       {/* Horizontal Scroll Container */}
-      <div className="relative w-full">
-        {/* Gradient overlays for smooth edge fade */}
-        <div className="absolute left-0 top-0 bottom-0 w-32 md:w-48 bg-gradient-to-r from-white via-white/80 to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-32 md:w-48 bg-gradient-to-l from-white via-white/80 to-transparent z-10 pointer-events-none" />
+      <div className="relative">
+        {/* Gradient overlays */}
+        <div className="absolute left-0 top-0 bottom-0 w-20 md:w-40 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-20 md:w-40 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
 
         {/* Scrollable container */}
         <div className="overflow-hidden">
           <div
-            className="flex gap-6 animate-marquee group"
-            onMouseEnter={(e) => e.currentTarget.style.animationPlayState = 'paused'}
-            onMouseLeave={(e) => e.currentTarget.style.animationPlayState = 'running'}
+            className="flex gap-6 md:gap-8 px-4 animate-marquee has-[:hover]:[animation-play-state:paused]"
           >
-            {/* First set - Original 6 cards */}
+            {/* Original set */}
             {services.map((service, index) => (
               <ServiceCard key={`original-${index}`} service={service} index={index} />
             ))}
-            {/* Second set - Duplicate 6 cards for seamless loop */}
+            {/* Duplicate set for infinite loop */}
             {services.map((service, index) => (
               <ServiceCard key={`duplicate-${index}`} service={service} index={index} />
             ))}
